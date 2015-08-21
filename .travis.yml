@@ -6,7 +6,7 @@ env:
   global:
   - PROJECT_NAME: LD33
   - GH_REF: github.com/$TRAVIS_REPO_SLUG.git
-  - secure: "LZSoSyck4D/iipWs/1yRBy1eFkhuWBr4ct36UZRQY76yNkke0grELmHGD8m8UCW3RrgB0o4MsMuhAxV+aux5iZmihaXg8g1hhpbQ2sritM9ZoZmiAejMLt9Ji+sXPJQ8aIiFRlbNP0mzPF5n1GtaHmSS70Nc4JrSEVbDaPRcq5OBrjQi4HqxQ8HL602wnzrlrAXdyd2IBRdBkKmp+FZJSyD9NnQxg68i3/H0fr+RrI2rBjhLcti660I9XBC9iPqsDkgfeEVppdNkbqGPg/ka2qCTMkdPDE8HiA0rDk1AI09eVVLYCbzjpe6D14O9X9ARPUwVJ5Q0A6uz+6tw0YDRlA+6HCPD2BJvXn/9OvBmT0FXP3y6Wo/IGD6g6ergyhOFTKwZnPj1fs+sbcYahR7TEnWYvv9E3BWQBTFjSx8crpV7StKqkvLT/cXtNVIAb5GqAKCiY7tSab0BOO8Idnr3KeL63SXlZfUJenJLCd7cLzDyXU0sPrzSQuZv/JOSsGRilwY1slSskQyU9AXCeZjke+MbHeHbC1Ium/McbBUg9immF5wgcF2s3224ZUb0ZiF+m6fw0kZ8p9Zw2u/RSyhNrutEJtvULC5w/mQfVem1pwKw8qTpLPsvxbu2bq4/PsS9uZOA98L3u9jEhW9pmrXTb0LIbZOnjxaZVDO85feQ31E="
+  - secure: LZSoSyck4D/iipWs/1yRBy1eFkhuWBr4ct36UZRQY76yNkke0grELmHGD8m8UCW3RrgB0o4MsMuhAxV+aux5iZmihaXg8g1hhpbQ2sritM9ZoZmiAejMLt9Ji+sXPJQ8aIiFRlbNP0mzPF5n1GtaHmSS70Nc4JrSEVbDaPRcq5OBrjQi4HqxQ8HL602wnzrlrAXdyd2IBRdBkKmp+FZJSyD9NnQxg68i3/H0fr+RrI2rBjhLcti660I9XBC9iPqsDkgfeEVppdNkbqGPg/ka2qCTMkdPDE8HiA0rDk1AI09eVVLYCbzjpe6D14O9X9ARPUwVJ5Q0A6uz+6tw0YDRlA+6HCPD2BJvXn/9OvBmT0FXP3y6Wo/IGD6g6ergyhOFTKwZnPj1fs+sbcYahR7TEnWYvv9E3BWQBTFjSx8crpV7StKqkvLT/cXtNVIAb5GqAKCiY7tSab0BOO8Idnr3KeL63SXlZfUJenJLCd7cLzDyXU0sPrzSQuZv/JOSsGRilwY1slSskQyU9AXCeZjke+MbHeHbC1Ium/McbBUg9immF5wgcF2s3224ZUb0ZiF+m6fw0kZ8p9Zw2u/RSyhNrutEJtvULC5w/mQfVem1pwKw8qTpLPsvxbu2bq4/PsS9uZOA98L3u9jEhW9pmrXTb0LIbZOnjxaZVDO85feQ31E=
 install:
 - ./Scripts/install.sh
 script:
@@ -23,8 +23,8 @@ deploy:
   - ./Build/windows_$TRAVIS_BRANCH-v0.$TRAVIS_BUILD_NUMBER.zip
   on:
     repo: cor/LD33
-  skip_cleanup: 
-after_deploy: true
+  skip_cleanup: true 
+after_deploy:
 - ./Scripts/deploy-ghpages.sh
 branches:
   except:
