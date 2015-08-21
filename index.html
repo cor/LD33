@@ -1,0 +1,38 @@
+---
+layout: default
+---
+
+<div class="home">
+
+      <h1 class="page-heading">News</h1>
+
+      <ul class="post-list">
+        {% for post in site.posts %}
+            {% if post.categories contains 'build' %}
+            {% else %}
+            <li>
+              <span class="post-meta">{{ post.date | date: "%b %-d, %Y" }}</span>
+
+              <h2>
+                <a class="post-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
+              </h2>
+            </li>
+            {% endif %}
+        {% endfor %}
+      </ul>
+
+        <h1 class="page-heading">Builds</h1>
+
+        <ul class="build-list">
+          {% for post in site.posts %}
+              {% if post.categories contains 'build' %}
+              <li>
+                <span class="post-meta"><a class="build-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.tag }}</a> ({{ post.date | date: "%Y-%m-%d %H:%M" }}) </span>
+              </li>
+              {% endif %}
+          {% endfor %}
+        </ul>
+
+  <p class="rss-subscribe">subscribe <a href="{{ "/feed.xml" | prepend: site.baseurl }}">via RSS</a></p>
+
+</div>

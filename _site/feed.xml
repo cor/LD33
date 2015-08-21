@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>LD33</title>
+    <description>This is the LD33, new bleeding edge builds will be released every commit. They will probbably contain a lot of bugs. Proceed with caution
+</description>
+    <link>http://cor.github.io/LD33/</link>
+    <atom:link href="http://cor.github.io/LD33/feed.xml" rel="self" type="application/rss+xml"/>
+    <pubDate>Fri, 21 Aug 2015 22:09:45 +0200</pubDate>
+    <lastBuildDate>Fri, 21 Aug 2015 22:09:45 +0200</lastBuildDate>
+    <generator>Jekyll v2.5.3</generator>
+    
+  </channel>
+</rss>

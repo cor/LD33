@@ -1,0 +1,13 @@
+# Site settings
+title: LD33
+email: cor@pruijs.nl
+description: > # this means to ignore newlines until "baseurl:"
+  This is the LD33, new bleeding edge builds will be
+  released every commit. They will probbably contain a lot of bugs.
+  Proceed with caution
+baseurl: "/LD33" # the subpath of your site, e.g. /blog/
+url: "http://cor.github.io" # the base hostname & protocol for your site
+github_username:  cor
+
+# Build settings
+markdown: kramdown
