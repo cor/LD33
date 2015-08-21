@@ -1,0 +1,30 @@
+language: objective-c
+osx_image: xcode61
+rvm:
+- 2.1.2
+env:
+  global:
+  - PROJECT_NAME: LD33
+  - GH_REF: github.com/$TRAVIS_REPO_SLUG.git
+  - secure: aGamGCboluBXPMaW0sUDcbMB6AmH0niRBdOxICL3aPDjLwnXtkVpCNFDQ+Rot5/c0qY0Iz4+NsLR90NFuyxbj8h0Zy8XzMVDM6N8aA7oR3Tww9vMjVLXd3AFmIdGnpFBiXSYLzT2FbxDMM3fK3YFZ3LFFUbgxln5mOiFnmPmaD2k03Aru+FiHSl9zU7PwQ8+iB2rRHaAUDTqjx74aaUYJeC0BnO9YPDJ9jmqMwoGzQZk8HK26mMxQpnH6pGdKKmgPLIT3a1xCtHYN4fvMiCgptVT80FYlhRFDYzqKgznsStJrOfzJiyHNkoOOzecFX4NAnaxnhpjEpH7Nst1HZHfKV6GolrNXYp3/1R77AHvFi3GfqIc6B+zF82kdI3SizvyWO+CPg2JD60VAyjeafmR4P/j6TxdrVC4Itvd+yU8uv+BirChQi/NtIvS3KeotN224LGnUS3yVD3/DZ/4DaOGrIEPzBDc/+rFLJTuyarGrIVemeTVuLnhswmov1T5cE3MxDO0FyImEvSb34fssn09gY99OL/FcC//Ecznec53FDYsnADpE2h35kuKSClU1qeOavDhY4xYTQNy2yfsKmmM9vsopayveW7Bl5yg4TfUQY2MhEPjNPvcwuET0khEYK4z2QIcZ6F4xw6yELgMMpFTkhAmXbRFxruxusG9PvAItHI=
+install:
+- ./Scripts/install.sh
+script:
+- ./Scripts/build.sh
+- ./Scripts/tag.sh
+before_deploy:
+deploy:
+  provider: releases
+  api_key:
+    secure: gILgofs4BEeELJsfFZIZwellbr++Nb5uJFXyzS6FkVjk0lGQ87RjlJ7ofdSZRixFFriUo+5kDd/DTFQSnC+V2Ty9FpDw4MyW/zuM1ZuxaTP36qjk3lfXYf/pvdDpWD8JWqSPXLMMQTDzb+zkFJoJwHxcC/pckc0YD+qP/kOrVRRr16ZbmfaFDra8PXYvR3DSe4Y1s6j9pvo+tLQyWP5tcmGN9bk43WgccfRz1zrcZe/rBMSw37HVpnYMN7QBBz6A6ypqn0w46pVsolWhUVsKqE+0cQgThk3ylWPKJPKPi1lVFqubKLPfQvoARBl0m85NWjHqECVLfSN7DIOfXs4gn6dOvlHdGIiNyVX1wKeAJfnaUUKrWP0yRE9GSIyUdq1eRaaULwIiYugwViKqoHxsI3r/+eJ8SNGiJud1IZWnLK5Uni+jM2EE0hwdhohoawMirfeCxKpbSfBtvMzW3TtXPLIfucOD05Fcp+vzZ233fJPOto4ry8ozMSI0WW6EJUa5b4/kkCihdQB3/VhkGDEObfAy4AXiO2slBbXWIEPJWekf9f7MwOZsjQha9nBONiBeC2IRd7ctCPmNfNVlzzmgk9mzVq8DfAewB+LCz5w7oGJq1R2wu+emzGheFTZQaIwKIrCsj/eCCClZhFHxv+6TZc1doyNDGzpcuTRexJqdvw4=
+  file:
+  - ./Build/osx_$TRAVIS_BRANCH-v0.$TRAVIS_BUILD_NUMBER.zip
+  - ./Build/windows_$TRAVIS_BRANCH-v0.$TRAVIS_BUILD_NUMBER.zip
+  - ./Build/linux_$TRAVIS_BRANCH-v0.$TRAVIS_BUILD_NUMBER.zip
+  skip_cleanup: true
+after_deploy:
+- ./Scripts/deploy-ghpages.sh
+branches:
+  except:
+  - gh-pages
+  - /^*-v[0-9]/
