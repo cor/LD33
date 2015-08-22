@@ -21,7 +21,7 @@ public class HouseController : MonoBehaviour {
 			healthBar.GetComponent<UpdateHealthBar>().setScale(healthManager.getPercentage());
 		}
 		
-		if (healthManager.currentHealth == 0) {
+		if (healthManager.currentHealth <= 0) {
 			Destroy(gameObject);
 		}
 	

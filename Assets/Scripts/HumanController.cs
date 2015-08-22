@@ -31,7 +31,7 @@ public class HumanController : MonoBehaviour {
 			healthBar.GetComponent<UpdateHealthBar>().setScale(healthManager.getPercentage());
 		}
 
-		if (healthManager.currentHealth == 0) {
+		if (healthManager.currentHealth <= 0) {
 			Destroy(gameObject);
 		}
 
