@@ -7,10 +7,10 @@ public class GameLogic : MonoBehaviour {
 	private const int INITIAL_LEVEL = 0;
 	private const int INITIAL_ROUND = 0;
 
-	private const int NUMBER_OF_ROUNDS = 2;
-
 	private static int currentLevel = INITIAL_LEVEL;
 	private static int currentRound = INITIAL_ROUND;
+
+	public int numberOfRounds = 2;
 
 	public float levelDuration = 10;
 
@@ -21,6 +21,10 @@ public class GameLogic : MonoBehaviour {
 	private State state;
 
 	public GUIStyle style;
+
+	public static GameLogic Get () {
+		return (GameLogic)GameObject.FindObjectOfType (typeof(GameLogic));
+	}
 
 	void Start () {
 		levelStartedTime = Time.time;
@@ -68,7 +72,7 @@ public class GameLogic : MonoBehaviour {
 	void NextRound() {
 		currentRound++;
 
-		if (currentRound >= NUMBER_OF_ROUNDS) {
+		if (currentRound >= numberOfRounds) {
 			currentRound = INITIAL_ROUND;
 			currentLevel++;
 		}
@@ -88,6 +92,10 @@ public class GameLogic : MonoBehaviour {
 
 	public bool IsPlaying() {
 		return state == State.Playing;
+	}
+
+	public int GetCurrentLevel() {
+		return currentLevel;
 	}
 
 	void FreezeAllObjects(string tag) {

@@ -8,7 +8,9 @@ public class HumanController : MonoBehaviour {
 
 	public float hitRate = 1f; // Delay between hits, in seconds
 	public int hitDamage = 10;
+	public float hitDamageLevelFactor = 2.0f;
 
+	private float hitDamageForLevel;
 
 	HealthManager healthManager;
 
@@ -24,8 +26,9 @@ public class HumanController : MonoBehaviour {
 
 		healthBar = (GameObject)Instantiate(healthBarToClone, transform.position, Quaternion.identity);
 		healthBar.GetComponent<UpdateHealthBar>().targetToFollow = gameObject;
-	}
 
+		hitDamageForLevel = hitDamage * Mathf.Pow (hitDamageLevelFactor, (float)GameLogic.Get ().GetCurrentLevel()); 
+	}
 
 	void Update() {
 		if (healthBar != null) {
@@ -36,14 +39,12 @@ public class HumanController : MonoBehaviour {
 			Die ();
 		}
 
-		if (currentHitTargetCollision != null ) {
+		if (currentHitTargetCollision != null) {
 			if (previousHitTime + hitRate < Time.time) {
-				currentHitTargetCollision.GetComponent<HealthManager>().currentHealth -= hitDamage;
+				currentHitTargetCollision.GetComponent<HealthManager> ().currentHealth -= hitDamageForLevel;
 				previousHitTime = Time.time;
 			}
 		}
-
-
 	}
 
 

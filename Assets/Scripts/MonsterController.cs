@@ -7,20 +7,31 @@ public class MonsterController : MonoBehaviour {
 
 	public float hitRate = 1f; // Delay between hits, in seconds
 	public int hitDamage = 20;
+	public float hitDamageLevelFactor = 0.5f;
+	
+	private float hitDamageForLevel;
 
-	GameObject currentHitTargetCollision;
-	float previousHitTime;
+	public float travelSpeedLevelFactor = 0.2f;
+
+	private float travelSpeedForLevel;
+
+	private GameObject currentHitTargetCollision;
+	private float previousHitTime;
+
+	void Start() {
+		travelSpeedForLevel = travelSpeed * (1 + (GameLogic.Get ().GetCurrentLevel() * travelSpeedLevelFactor));
+
+		hitDamageForLevel = hitDamage * Mathf.Pow (hitDamageLevelFactor, (float)GameLogic.Get ().GetCurrentLevel()); 
+	}
 
 	void FixedUpdate()
 	{
-		GameLogic gameLogic = (GameLogic)GameObject.FindObjectOfType (typeof(GameLogic));
-
-		if (gameLogic.IsPlaying ()) {
+		if (GameLogic.Get().IsPlaying ()) {
 			Rigidbody2D rigidbody2D = GetComponent<Rigidbody2D> ();
 
 			rigidbody2D.velocity = new Vector2 (
-				Input.GetAxis ("Horizontal") * travelSpeed * Time.deltaTime, 
-				Input.GetAxis ("Vertical") * travelSpeed * Time.deltaTime);
+				Input.GetAxis ("Horizontal") * travelSpeedForLevel * Time.deltaTime, 
+				Input.GetAxis ("Vertical") * travelSpeedForLevel * Time.deltaTime);
 		}
 	}
 
@@ -28,7 +39,7 @@ public class MonsterController : MonoBehaviour {
 	void Update() {
 		if (currentHitTargetCollision != null) {
 			if (previousHitTime + hitRate < Time.time) {
-				currentHitTargetCollision.gameObject.GetComponent<HealthManager>().currentHealth -= hitDamage;
+				currentHitTargetCollision.gameObject.GetComponent<HealthManager>().currentHealth -= hitDamageForLevel;
 				previousHitTime = Time.time;
 			}
 		}

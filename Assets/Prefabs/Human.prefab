@@ -89,6 +89,7 @@ MonoBehaviour:
   maxSpeed: 1
   hitRate: .5
   hitDamage: 2
+  hitDamageLevelFactor: .5
   healthBarToClone: {fileID: 102480, guid: d8560526974b34842aa20f053e907dd6, type: 2}
 --- !u!212 &21281762
 SpriteRenderer:

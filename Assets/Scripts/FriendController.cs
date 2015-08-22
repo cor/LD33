@@ -36,8 +36,6 @@ public class FriendController : MonoBehaviour {
 	}
 
 	GameObject FindNextTarget() {
-		GameObject[] gos;
-
 		List<GameObject> candidates = new List<GameObject> ();
 
 		AddCandidates (candidates, "House");
@@ -56,12 +54,9 @@ public class FriendController : MonoBehaviour {
 	}
 
 	void AddCandidates(List<GameObject> candidates, string tag) {
-		GameObject[] gos = GameObject.FindGameObjectsWithTag(tag);
-		float distance = Mathf.Infinity;
-		Vector3 position = transform.position;
-		foreach (GameObject go in gos) {
-			if (target != this && (target == null || target != go)) {
-				candidates.Add(go);
+		foreach (GameObject gameObject in GameObject.FindGameObjectsWithTag(tag)) {
+			if (target != this && (target == null || target != gameObject)) {
+				candidates.Add(gameObject);
 			}
 		}
 	}

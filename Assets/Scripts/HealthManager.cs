@@ -3,8 +3,8 @@ using System.Collections;
 
 public class HealthManager : MonoBehaviour {
 	
-	public int currentHealth = 100;
-	public int maxHealth = 100;
+	public float currentHealth = 100;
+	public float maxHealth = 100;
 	
 	// Use this for initialization
 	void Start () {
@@ -17,6 +17,6 @@ public class HealthManager : MonoBehaviour {
 	}
 	
 	public float getPercentage () {
-		return (float)currentHealth / (float)maxHealth;
+		return currentHealth / maxHealth;
 	}
 }
