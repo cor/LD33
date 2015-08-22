@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Human
   - House
+  - Monster
   layers:
   - Default
   - TransparentFX

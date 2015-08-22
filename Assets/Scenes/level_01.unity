@@ -96,11 +96,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 411874, guid: 2e8008b82225340e08f217c826003bd2, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -12.1999998
+      value: -5.69000006
       objectReference: {fileID: 0}
     - target: {fileID: 411874, guid: 2e8008b82225340e08f217c826003bd2, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 11.7299995
+      value: 5.51999998
       objectReference: {fileID: 0}
     - target: {fileID: 411874, guid: 2e8008b82225340e08f217c826003bd2, type: 2}
       propertyPath: m_LocalPosition.z
@@ -147,7 +147,7 @@ GameObject:
   - 50: {fileID: 981096174}
   m_Layer: 0
   m_Name: Monster
-  m_TagString: Untagged
+  m_TagString: Monster
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -371,11 +371,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 411874, guid: 2e8008b82225340e08f217c826003bd2, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 16.6900005
+      value: 8.22999954
       objectReference: {fileID: 0}
     - target: {fileID: 411874, guid: 2e8008b82225340e08f217c826003bd2, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -7.25
+      value: -2.18000007
       objectReference: {fileID: 0}
     - target: {fileID: 411874, guid: 2e8008b82225340e08f217c826003bd2, type: 2}
       propertyPath: m_LocalPosition.z
