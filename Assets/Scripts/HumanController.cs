@@ -13,7 +13,7 @@ public class HumanController : MonoBehaviour {
 
 	float previousHitTime = 0f;
 
-	Collision2D currentHitTargetCollision;
+	GameObject currentHitTargetCollision;
 
 	public GameObject healthBarToClone;
 	GameObject healthBar;
@@ -35,9 +35,9 @@ public class HumanController : MonoBehaviour {
 			Destroy(gameObject);
 		}
 
-		if (currentHitTargetCollision != null) {
+		if (currentHitTargetCollision != null ) {
 			if (previousHitTime + hitRate < Time.time) {
-				currentHitTargetCollision.gameObject.GetComponent<HealthManager>().currentHealth -= hitDamage;
+				currentHitTargetCollision.GetComponent<HealthManager>().currentHealth -= hitDamage;
 				previousHitTime = Time.time;
 			}
 		}
@@ -59,18 +59,13 @@ public class HumanController : MonoBehaviour {
 	}
 	
 	void OnCollisionEnter2D (Collision2D col) {
-		if (col.collider.tag == "Monster") {
-			healthManager.currentHealth -= 20;
+		if (col.gameObject.tag == "House") {
+			currentHitTargetCollision = col.gameObject;
 		}
-
-		if (col.collider.tag == "House") {
-			currentHitTargetCollision = col;
-		}
-
 	}
 
 	void OnCollisionExit2D (Collision2D col) {
-		if (col == currentHitTargetCollision) {
+		if (col.gameObject == currentHitTargetCollision) {
 			currentHitTargetCollision = null;
 		}
 	}
