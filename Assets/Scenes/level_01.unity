@@ -447,6 +447,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   travelSpeed: 350
+  hitRate: .100000001
+  hitDamage: 20
 --- !u!50 &981096174
 Rigidbody2D:
   serializedVersion: 2
