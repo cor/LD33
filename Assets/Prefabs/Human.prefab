@@ -87,8 +87,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   travelSpeed: .5
   maxSpeed: 1
-  hitRate: 1
-  hitDamage: 10
+  hitRate: .5
+  hitDamage: 2
   healthBarToClone: {fileID: 102480, guid: d8560526974b34842aa20f053e907dd6, type: 2}
 --- !u!212 &21281762
 SpriteRenderer:
@@ -135,6 +135,14 @@ Prefab:
       propertyPath: healthBar
       value: 
       objectReference: {fileID: 102480, guid: d8560526974b34842aa20f053e907dd6, type: 2}
+    - target: {fileID: 0}
+      propertyPath: hitDamage
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: hitRate
+      value: .5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 163532}

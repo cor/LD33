@@ -4,8 +4,11 @@ using UnityEngine.UI;
 
 public class UpdateHealthBar : MonoBehaviour {
 
-	public RectTransform healthTransform;
+	public GameObject healthImage;
 	public GameObject targetToFollow;
+
+	public Color minColor = Color.red;
+	public Color maxColor = Color.green;
 
 	// Use this for initialization
 	void Start () {
@@ -21,10 +24,12 @@ public class UpdateHealthBar : MonoBehaviour {
 			Destroy(gameObject);
 		}
 
+		healthImage.GetComponent<Image>().color = Color.Lerp(minColor, maxColor, Mathf.Lerp(0.0f, 1.0f, healthImage.transform.localScale.x));
+
 	}
 
 	public void setScale(float scale) {
-		healthTransform.localScale = new Vector2(scale, 1);
+		healthImage.GetComponent<RectTransform>().localScale = new Vector2(scale, 1);
 	}
 
 }

@@ -11,8 +11,9 @@ public class HumanController : MonoBehaviour {
 
 	HealthManager healthManager;
 
-	float previousTime = 0f;
+	float previousHitTime = 0f;
 
+	Collision2D currentHitTargetCollision;
 
 	public GameObject healthBarToClone;
 	GameObject healthBar;
@@ -34,6 +35,14 @@ public class HumanController : MonoBehaviour {
 			Destroy(gameObject);
 		}
 
+		if (currentHitTargetCollision != null) {
+			if (previousHitTime + hitRate < Time.time) {
+				Debug.Log("Going to hit");
+				currentHitTargetCollision.gameObject.GetComponent<HealthManager>().currentHealth -= hitDamage;
+				previousHitTime = Time.time;
+			}
+		}
+
 
 	}
 
@@ -51,16 +60,24 @@ public class HumanController : MonoBehaviour {
 	
 	void OnCollisionEnter2D (Collision2D col) {
 		if (col.collider.tag == "Monster") {
-			Debug.Log ("hit by monster");
 			healthManager.currentHealth -= 20;
 		}
 
 		if (col.collider.tag == "House") {
-			col.gameObject.GetComponent<HealthManager>().currentHealth -= hitDamage;
-			previousTime = Time.time;
+			currentHitTargetCollision = col;
+			Debug.Log ("New Target");
 		}
 
 	}
+
+	void OnCollisionExit2D (Collision2D col) {
+		if (col == currentHitTargetCollision) {
+			currentHitTargetCollision = null;
+			Debug.Log ("Target gone");
+		}
+	}
+
+
 
 	GameObject FindClosestHouse() {
 		GameObject[] gos;
