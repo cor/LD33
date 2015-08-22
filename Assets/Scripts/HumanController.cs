@@ -6,8 +6,32 @@ public class HumanController : MonoBehaviour {
 	public float travelSpeed = 0.5f;
 	public float maxSpeed = 1f; //Replace with your max speed
 
-	void FixedUpdate()
-	{
+	public int health = 100;
+	public int maxHealth = 100;
+
+
+	public GameObject healthBarToClone;
+	GameObject healthBar;
+
+	void Start() {
+		healthBar = (GameObject)Instantiate(healthBarToClone, transform.position, Quaternion.identity);
+		healthBar.GetComponent<UpdateHealthBar>().targetToFollow = gameObject;
+	}
+
+
+	void Update() {
+		if (healthBar != null) {
+			float newScale = (float)health / (float)maxHealth;
+			healthBar.GetComponent<UpdateHealthBar>().setScale(newScale);
+		}
+
+		if (health == 0) {
+			Destroy(gameObject);
+		}
+	}
+
+
+	void FixedUpdate() {
 		GameObject closestHouse = FindClosestHouse ();
 
 		Rigidbody2D rigidbody2D = GetComponent<Rigidbody2D> ();
@@ -19,9 +43,11 @@ public class HumanController : MonoBehaviour {
 	}
 	
 	void OnCollisionEnter2D (Collision2D col) {
-		if (col.collider.tag.Equals("Monster")) {
-			Destroy(gameObject);
+		if (col.collider.tag == "Monster") {
+			Debug.Log ("hit by monster");
+			health -= 20;
 		}
+
 	}
 
 	GameObject FindClosestHouse() {
