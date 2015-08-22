@@ -15,7 +15,7 @@ Direct downloads:
   - [Linux][linux-download]
   - [Windows][windows-download]
 
-[osx-download]: https://github.com/cor/LD-template/releases/download/@branch@-v@version@/osx_@branch@-v@version@.zip
-[linux-download]: https://github.com/cor/LD-template/releases/download/@branch@-v@version@/linux_@branch@-v@version@.zip
-[windows-download]: https://github.com/cor/LD-template/releases/download/@branch@-v@version@/windows_@branch@-v@version@.zip
-[github-release]: https://github.com/cor/LD-template/releases/tag/@branch@-v@version@
+[osx-download]: https://github.com/cor/LD33/releases/download/@branch@-v@version@/osx_@branch@-v@version@.zip
+[linux-download]: https://github.com/cor/LD33/releases/download/@branch@-v@version@/linux_@branch@-v@version@.zip
+[windows-download]: https://github.com/cor/LD33/releases/download/@branch@-v@version@/windows_@branch@-v@version@.zip
+[github-release]: https://github.com/cor/LD33/releases/tag/@branch@-v@version@

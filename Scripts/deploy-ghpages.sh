@@ -35,6 +35,8 @@ echo ${datestamp}
 echo ${template}
 echo ${filename}
 
+mkdir -p _posts
+
 sed -e 's/@version@/'"${version}"'/g' -e 's/@branch@/'"${branch}"'/g' -e 's/@timestamp@/'"${timestamp}"'/g' ${template} > ${filename}
 
 echo 5
