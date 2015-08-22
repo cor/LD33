@@ -54,7 +54,7 @@ public class HumanSpawner : MonoBehaviour {
 	}
 
 	Vector2 GetNextPoint() {
-		if (currentPointIndex < pointArray.Length) {
+		if (currentPointIndex + 1 < pointArray.Length) {
 			return pointArray[++currentPointIndex].position;
 		} else {
 			currentPointIndex = 0;
