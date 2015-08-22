@@ -4,7 +4,7 @@ title:    LD33; ready to go!
 categories:
 ---
 
-This is the LD33 site, new bleeding edge builds will be released every commit. They will probbably contain a lot of bugs. Proceed with caution.
+This is the LD33 site, new bleeding edge builds will be released every commit. They will probably contain a lot of bugs. Proceed with caution.
 
 See [GitHub][github-site] for our work or look at our [PhotoStream][photostream].
 
