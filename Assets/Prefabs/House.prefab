@@ -11,6 +11,7 @@ GameObject:
   - 212: {fileID: 21289586}
   - 61: {fileID: 6142330}
   - 114: {fileID: 11472164}
+  - 114: {fileID: 11466078}
   m_Layer: 0
   m_Name: House
   m_TagString: House
@@ -43,6 +44,19 @@ BoxCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
+--- !u!114 &11466078
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 122972}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da0f2ad85cd9a4cf9bad6026a265cd59, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentHealth: 100
+  maxHealth: 100
 --- !u!114 &11472164
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -54,8 +68,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb6786177a58e41a3a88c034eb0f2785, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 100
-  maxHealth: 100
   healthBarToClone: {fileID: 102480, guid: d8560526974b34842aa20f053e907dd6, type: 2}
 --- !u!212 &21289586
 SpriteRenderer:

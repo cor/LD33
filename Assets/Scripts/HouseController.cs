@@ -3,14 +3,14 @@ using System.Collections;
 
 public class HouseController : MonoBehaviour {
 
-	public int health = 100;
-	public int maxHealth = 100;
-
 	public GameObject healthBarToClone;
 	GameObject healthBar;
 
+	HealthManager healthManager;
 	// Use this for initialization
 	void Start () {
+		healthManager = GetComponent<HealthManager>();
+
 		healthBar = (GameObject)Instantiate(healthBarToClone, transform.position, Quaternion.identity);
 		healthBar.GetComponent<UpdateHealthBar>().targetToFollow = gameObject;
 	}
@@ -18,21 +18,13 @@ public class HouseController : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if (healthBar != null) {
-			float newScale = (float)health / (float)maxHealth;
-			healthBar.GetComponent<UpdateHealthBar>().setScale(newScale);
+			healthBar.GetComponent<UpdateHealthBar>().setScale(healthManager.getPercentage());
 		}
 		
-		if (health == 0) {
+		if (healthManager.currentHealth == 0) {
 			Destroy(gameObject);
 		}
 	
 	}
 
-	void OnCollisionEnter2D (Collision2D col) {
-
-		if (col.collider.tag == "Human") {
-			health -= 10;
-		}
-
-	}
 }

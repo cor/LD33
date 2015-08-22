@@ -6,14 +6,20 @@ public class HumanController : MonoBehaviour {
 	public float travelSpeed = 0.5f;
 	public float maxSpeed = 1f; //Replace with your max speed
 
-	public int health = 100;
-	public int maxHealth = 100;
+	public float hitRate = 1f; // Delay between hits, in seconds
+	public int hitDamage = 10;
+
+	HealthManager healthManager;
+
+	float previousTime = 0f;
 
 
 	public GameObject healthBarToClone;
 	GameObject healthBar;
 
 	void Start() {
+		healthManager = GetComponent<HealthManager>();
+
 		healthBar = (GameObject)Instantiate(healthBarToClone, transform.position, Quaternion.identity);
 		healthBar.GetComponent<UpdateHealthBar>().targetToFollow = gameObject;
 	}
@@ -21,13 +27,14 @@ public class HumanController : MonoBehaviour {
 
 	void Update() {
 		if (healthBar != null) {
-			float newScale = (float)health / (float)maxHealth;
-			healthBar.GetComponent<UpdateHealthBar>().setScale(newScale);
+			healthBar.GetComponent<UpdateHealthBar>().setScale(healthManager.getPercentage());
 		}
 
-		if (health == 0) {
+		if (healthManager.currentHealth == 0) {
 			Destroy(gameObject);
 		}
+
+
 	}
 
 
@@ -45,7 +52,12 @@ public class HumanController : MonoBehaviour {
 	void OnCollisionEnter2D (Collision2D col) {
 		if (col.collider.tag == "Monster") {
 			Debug.Log ("hit by monster");
-			health -= 20;
+			healthManager.currentHealth -= 20;
+		}
+
+		if (col.collider.tag == "House") {
+			col.gameObject.GetComponent<HealthManager>().currentHealth -= hitDamage;
+			previousTime = Time.time;
 		}
 
 	}
