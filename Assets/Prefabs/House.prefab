@@ -55,6 +55,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 100
+  maxHealth: 100
+  healthBarToClone: {fileID: 102480, guid: d8560526974b34842aa20f053e907dd6, type: 2}
 --- !u!212 &21289586
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -87,7 +89,11 @@ Prefab:
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 0}
-    m_Modifications: []
+    m_Modifications:
+    - target: {fileID: 0}
+      propertyPath: healthBarToClone
+      value: 
+      objectReference: {fileID: 102480, guid: d8560526974b34842aa20f053e907dd6, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 122972}
