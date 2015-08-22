@@ -10,8 +10,9 @@ GameObject:
   - 4: {fileID: 467296}
   - 212: {fileID: 21281762}
   - 58: {fileID: 5840266}
-  - 114: {fileID: 11482536}
   - 50: {fileID: 5030828}
+  - 114: {fileID: 11482536}
+  - 114: {fileID: 11455958}
   m_Layer: 0
   m_Name: Human
   m_TagString: Human
@@ -60,6 +61,19 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: .364003897
+--- !u!114 &11455958
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 163532}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da0f2ad85cd9a4cf9bad6026a265cd59, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentHealth: 100
+  maxHealth: 100
 --- !u!114 &11482536
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -71,11 +85,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64c3542433b8e47a095bec4f96966d95, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rb: {fileID: 0}
   travelSpeed: .5
   maxSpeed: 1
-  health: 100
-  maxHealth: 100
+  hitRate: 1
+  hitDamage: 10
   healthBarToClone: {fileID: 102480, guid: d8560526974b34842aa20f053e907dd6, type: 2}
 --- !u!212 &21281762
 SpriteRenderer:
