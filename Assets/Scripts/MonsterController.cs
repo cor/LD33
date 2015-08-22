@@ -13,12 +13,15 @@ public class MonsterController : MonoBehaviour {
 
 	void FixedUpdate()
 	{
-		Rigidbody2D rigidbody2D = GetComponent<Rigidbody2D> ();
+		GameLogic gameLogic = (GameLogic)GameObject.FindObjectOfType (typeof(GameLogic));
 
-		rigidbody2D.velocity = new Vector2(
-			Input.GetAxis("Horizontal") * travelSpeed * Time.deltaTime, 
-			Input.GetAxis("Vertical") * travelSpeed * Time.deltaTime);
+		if (gameLogic.IsPlaying ()) {
+			Rigidbody2D rigidbody2D = GetComponent<Rigidbody2D> ();
 
+			rigidbody2D.velocity = new Vector2 (
+				Input.GetAxis ("Horizontal") * travelSpeed * Time.deltaTime, 
+				Input.GetAxis ("Vertical") * travelSpeed * Time.deltaTime);
+		}
 	}
 
 
