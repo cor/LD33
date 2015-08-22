@@ -42,10 +42,9 @@ public class FriendController : MonoBehaviour {
 
 		AddCandidates (candidates, "House");
 		AddCandidates (candidates, "Friend");
+		AddCandidates (candidates, "Monster");
 
 		GameObject result;
-
-		Debug.Log ("candidates: " + candidates.Count);
 
 		if (candidates.Count != 0) {
 			result = candidates[Random.Range (0, candidates.Count)];
@@ -61,7 +60,7 @@ public class FriendController : MonoBehaviour {
 		float distance = Mathf.Infinity;
 		Vector3 position = transform.position;
 		foreach (GameObject go in gos) {
-			if (target == null || target != go) {
+			if (target != this && (target == null || target != go)) {
 				candidates.Add(go);
 			}
 		}
