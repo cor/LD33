@@ -3,19 +3,16 @@ using System.Collections;
 
 public class MonsterController : MonoBehaviour {
 
-	public float moveSpeed = 0.10f;
+	public float travelSpeed = 10f;
+	public float maxSpeed = 5f; //Replace with your max speed
 
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		float horizontalIncrement = Input.GetAxis("Horizontal") * moveSpeed;
-		float verticalIncrement = Input.GetAxis("Vertical") * moveSpeed;
+	void FixedUpdate()
+	{
+		Rigidbody2D rigidbody2D = GetComponent<Rigidbody2D> ();
 
-		transform.position = new Vector2(transform.position.x + horizontalIncrement, transform.position.y + verticalIncrement);
-	
+		Vector2 direction = new Vector2 (Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
+
+		rigidbody2D.AddForce (direction * travelSpeed);
+		rigidbody2D.velocity = Vector2.ClampMagnitude (rigidbody2D.velocity, maxSpeed);
 	}
 }

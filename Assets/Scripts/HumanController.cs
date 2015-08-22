@@ -3,7 +3,6 @@ using System.Collections;
 
 public class HumanController : MonoBehaviour {
 
-	public Rigidbody2D rb;
 	public float travelSpeed = 0.5f;
 	public float maxSpeed = 1f; //Replace with your max speed
 
