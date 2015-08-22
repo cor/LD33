@@ -20,6 +20,8 @@ public class GameLogic : MonoBehaviour {
 
 	private State state;
 
+	public GUIStyle style;
+
 	void Start () {
 		levelStartedTime = Time.time;
 		
@@ -38,6 +40,9 @@ public class GameLogic : MonoBehaviour {
 
 	void OnGUI()
 	{
+		GUI.Label(new Rect(10,10, 200, 30), "Level " + (currentLevel + 1), style);
+		GUI.Label(new Rect(10,50, 200, 30), "Round " + (currentRound + 1), style);
+
 		if (state == State.Destroyed) {
 			FreezeAllObjects();
 
