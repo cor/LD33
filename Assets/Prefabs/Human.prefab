@@ -147,6 +147,10 @@ Prefab:
       propertyPath: m_Mass
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: friendForCloning
+      value: 
+      objectReference: {fileID: 143278, guid: 7eb5d2ad3a8a744a9afdc2feda86631a, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 163532}

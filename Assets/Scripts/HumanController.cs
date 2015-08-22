@@ -9,6 +9,7 @@ public class HumanController : MonoBehaviour {
 	public float hitRate = 1f; // Delay between hits, in seconds
 	public int hitDamage = 10;
 
+
 	HealthManager healthManager;
 
 	float previousHitTime = 0f;
@@ -32,7 +33,7 @@ public class HumanController : MonoBehaviour {
 		}
 
 		if (healthManager.currentHealth <= 0) {
-			Destroy(gameObject);
+			Die ();
 		}
 
 		if (currentHitTargetCollision != null ) {
@@ -71,6 +72,9 @@ public class HumanController : MonoBehaviour {
 	}
 
 
+	void Die() {
+		Destroy(gameObject);
+	}
 
 	GameObject FindClosestHouse() {
 		GameObject[] gos;

@@ -18,6 +18,7 @@ public class MonsterController : MonoBehaviour {
 		rigidbody2D.velocity = new Vector2(
 			Input.GetAxis("Horizontal") * travelSpeed * Time.deltaTime, 
 			Input.GetAxis("Vertical") * travelSpeed * Time.deltaTime);
+
 	}
 
 
@@ -28,6 +29,7 @@ public class MonsterController : MonoBehaviour {
 				previousHitTime = Time.time;
 			}
 		}
+
 	}
 
 	void OnCollisionEnter2D (Collision2D col) {
