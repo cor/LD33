@@ -14,7 +14,7 @@ GameObject:
   - 50: {fileID: 5051730}
   m_Layer: 0
   m_Name: Friend
-  m_TagString: Untagged
+  m_TagString: Friend
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -73,6 +73,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   travelSpeed: .5
   maxSpeed: 1
+  maximumTargetTime: 10
+  targetTime: 0
   target: {fileID: 0}
 --- !u!212 &21221218
 SpriteRenderer:
@@ -110,6 +112,10 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: m_Constraints
       value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_TagString
+      value: Friend
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
