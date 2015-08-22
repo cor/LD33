@@ -37,7 +37,6 @@ public class HumanController : MonoBehaviour {
 
 		if (currentHitTargetCollision != null) {
 			if (previousHitTime + hitRate < Time.time) {
-				Debug.Log("Going to hit");
 				currentHitTargetCollision.gameObject.GetComponent<HealthManager>().currentHealth -= hitDamage;
 				previousHitTime = Time.time;
 			}
@@ -49,13 +48,14 @@ public class HumanController : MonoBehaviour {
 
 	void FixedUpdate() {
 		GameObject closestHouse = FindClosestHouse ();
+		if (closestHouse != null) {
+			Rigidbody2D rigidbody2D = GetComponent<Rigidbody2D> ();
 
-		Rigidbody2D rigidbody2D = GetComponent<Rigidbody2D> ();
+			Vector2 direction = (closestHouse.transform.position - transform.position).normalized;
 
-		Vector2 direction = (closestHouse.transform.position - transform.position).normalized;
-
-		rigidbody2D.AddForce (direction * travelSpeed);
-		rigidbody2D.velocity = Vector2.ClampMagnitude (rigidbody2D.velocity, maxSpeed);
+			rigidbody2D.AddForce (direction * travelSpeed);
+			rigidbody2D.velocity = Vector2.ClampMagnitude (rigidbody2D.velocity, maxSpeed);
+		}
 	}
 	
 	void OnCollisionEnter2D (Collision2D col) {
@@ -65,7 +65,6 @@ public class HumanController : MonoBehaviour {
 
 		if (col.collider.tag == "House") {
 			currentHitTargetCollision = col;
-			Debug.Log ("New Target");
 		}
 
 	}
@@ -73,7 +72,6 @@ public class HumanController : MonoBehaviour {
 	void OnCollisionExit2D (Collision2D col) {
 		if (col == currentHitTargetCollision) {
 			currentHitTargetCollision = null;
-			Debug.Log ("Target gone");
 		}
 	}
 

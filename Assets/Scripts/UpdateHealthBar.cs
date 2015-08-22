@@ -7,8 +7,12 @@ public class UpdateHealthBar : MonoBehaviour {
 	public GameObject healthImage;
 	public GameObject targetToFollow;
 
-	public Color minColor = Color.red;
 	public Color maxColor = Color.green;
+	public Color midColor = Color.yellow;
+	public Color minColor = Color.red;
+
+	public float minMidColorPoint = 0.25f;
+	public float midMaxColorPoint = 0.75f;
 
 	// Use this for initialization
 	void Start () {
@@ -24,7 +28,19 @@ public class UpdateHealthBar : MonoBehaviour {
 			Destroy(gameObject);
 		}
 
-		healthImage.GetComponent<Image>().color = Color.Lerp(minColor, maxColor, Mathf.Lerp(0.0f, 1.0f, healthImage.transform.localScale.x));
+		Color newColor;
+		float xScale = healthImage.transform.localScale.x;
+
+		if (xScale > 0.75f) {
+			newColor = maxColor;
+		} else if (xScale > 0.25f) {
+			newColor = midColor;
+		} else {
+			newColor = minColor;
+		}
+
+		healthImage.GetComponent<Image>().color = newColor;
+
 
 	}
 
