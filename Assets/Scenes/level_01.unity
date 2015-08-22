@@ -98,6 +98,7 @@ GameObject:
   - 212: {fileID: 981096171}
   - 58: {fileID: 981096170}
   - 114: {fileID: 981096173}
+  - 50: {fileID: 981096174}
   m_Layer: 0
   m_Name: Monster
   m_TagString: Untagged
@@ -168,6 +169,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: .100000001
+--- !u!50 &981096174
+Rigidbody2D:
+  serializedVersion: 2
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 981096169}
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: .0500000007
+  m_GravityScale: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &1346638516
 GameObject:
   m_ObjectHideFlags: 0
@@ -263,9 +280,10 @@ GameObject:
   - 4: {fileID: 1822476818}
   - 212: {fileID: 1822476817}
   - 58: {fileID: 1822476819}
+  - 114: {fileID: 1822476820}
   m_Layer: 0
   m_Name: Human
-  m_TagString: Untagged
+  m_TagString: Human
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -321,6 +339,17 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: .364003897
+--- !u!114 &1822476820
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1822476816}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64c3542433b8e47a095bec4f96966d95, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2071734505
 GameObject:
   m_ObjectHideFlags: 0
