@@ -214,7 +214,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9208559cea21400b9bf41e5a2691492, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: .100000001
+  travelSpeed: 10
+  maxSpeed: 5
 --- !u!50 &981096174
 Rigidbody2D:
   serializedVersion: 2
@@ -230,7 +231,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!1001 &1225990080
 Prefab:
   m_ObjectHideFlags: 0
