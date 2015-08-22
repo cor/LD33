@@ -1,6 +1,7 @@
 #! /bin/sh
 
-export PROJECT_NAME="LD-template"
+
+export PROJECT_NAME="`basename $PWD`"
 export TRAVIS_BRANCH="master"
 export TRAVIS_BUILD_NUMBER=42
 
