@@ -19,8 +19,6 @@ public class HumanController : MonoBehaviour {
 	}
 	
 	void OnCollisionEnter2D (Collision2D col) {
-		Debug.Log ("OnCollisionEnter2D" + col.collider.tag);
-
 		if (col.collider.tag.Equals("Monster")) {
 			Destroy(gameObject);
 		}
