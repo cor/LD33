@@ -19,6 +19,11 @@ public class AudioManager : MonoBehaviour {
 	public float backgroundAudioVolume = 1.0f;
 	public float backgroundCrossfadeSpeed = 0.1f;
 
+	public float minimumPlayingPitch = 1.5f;
+	public float maximumPlayingPitch = 2.0f;
+	public float pausedPlayingPitch = 1.0f;
+	public float pitchChangeSpeed = 0.1f;
+
 	void Awake() 
 	{
 		if (instance != null && instance != this) 
@@ -47,6 +52,40 @@ public class AudioManager : MonoBehaviour {
 			float newPlayingVolume = availableAudioSource.volume - backgroundCrossfadeSpeed * Time.deltaTime;
 			availableAudioSource.volume = Mathf.Max(newPlayingVolume, 0.0f);
 		}
+
+		float targetPitch = GetTargetPlayingPitch ();
+
+		if (playingAudioSource.pitch != targetPitch) {
+			float maximumChange = pitchChangeSpeed * Time.deltaTime;
+
+			float difference = targetPitch - playingAudioSource.pitch;
+
+			float change;
+
+			if (difference > 0.0f) {
+				change = Mathf.Min (difference, maximumChange);
+			} else {
+				change = Mathf.Max (difference, -maximumChange);
+			}
+
+			float newPitch = playingAudioSource.pitch + change;
+
+			playingAudioSource.pitch = newPitch;
+			availableAudioSource.pitch = newPitch;
+		}
+	}
+
+	private float GetTargetPlayingPitch()
+	{
+		float result;
+
+		if (GameLogic.GetInstance ().IsPlaying ()) {
+			result = minimumPlayingPitch + GameLogic.GetInstance().GetRoundPercentage() * (maximumPlayingPitch - minimumPlayingPitch);
+		} else {
+			result = pausedPlayingPitch;
+		}
+
+		return result;
 	}
 
 	public static AudioManager GetInstance() 
@@ -80,6 +119,7 @@ public class AudioManager : MonoBehaviour {
 
 		availableAudioSource.clip = newClip;
 		availableAudioSource.time = playingAudioSource.time;
+		availableAudioSource.pitch = playingAudioSource.pitch;
 		availableAudioSource.volume = 0.0f;
 		availableAudioSource.Play ();
 

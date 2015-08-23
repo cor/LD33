@@ -13,7 +13,7 @@ public class GameLogic : MonoBehaviour {
 	private static int currentRound = INITIAL_ROUND;
 
 	public int numberOfRounds = 2;
-	public float levelDuration = 10;
+	public float levelDuration = 60;
 	public float levelStartedTime;
 
 	public enum GameState { Playing, Destroyed, Completed }
@@ -130,6 +130,10 @@ public class GameLogic : MonoBehaviour {
 
 	public int GetCurrentTotalNumberOfRounds() {
 		return currentLevel * numberOfRounds + currentRound;
+	}
+
+	public float GetRoundPercentage() {
+		return (Time.time - levelStartedTime) / levelDuration;
 	}
 
 	bool IsLevelCompleted() {
