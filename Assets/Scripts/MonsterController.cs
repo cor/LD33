@@ -19,6 +19,9 @@ public class MonsterController : MonoBehaviour {
 	float currentMoveSpeed = 0;
 
 	public Animator animator;
+	
+	public float minimumHitCameraShake = 0.1f;
+	public float maximumHitCameraShake = 0.2f;
 
 	void Start() {
 
@@ -64,8 +67,7 @@ public class MonsterController : MonoBehaviour {
 
 			if (currentHitTargetCollision != null) {
 				if (previousHitTime + hitRate < Time.time) {
-					currentHitTargetCollision.gameObject.GetComponent<HealthManager> ().currentHealth -= hitDamageForLevel;
-					previousHitTime = Time.time;
+					Hit();
 				}
 			}
 		} else {
@@ -75,6 +77,13 @@ public class MonsterController : MonoBehaviour {
 
 			GetComponent<Rigidbody2D> ().Sleep ();
 		}
+	}
+
+	void Hit() {
+		Camera.main.GetComponent<CameraController> ().Shake (Random.Range (minimumHitCameraShake, maximumHitCameraShake));
+		
+		currentHitTargetCollision.gameObject.GetComponent<HealthManager> ().currentHealth -= hitDamageForLevel;
+		previousHitTime = Time.time;
 	}
 
 	void OnCollisionEnter2D (Collision2D col) {

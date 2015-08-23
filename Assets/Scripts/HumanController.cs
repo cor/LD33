@@ -19,6 +19,12 @@ public class HumanController : MonoBehaviour {
 	public GameObject healthBarToClone;
 	public GameObject healthBar;
 	public UpdateHealthBar updateHealthBar;
+	
+	public float minimumHitCameraShake = 0.1f;
+	public float maximumHitCameraShake = 0.2f;
+	
+	public float minimumDieCameraShake = 0.25f;
+	public float maximumDieCameraShake = 0.5f;
 
 	void Start() {
 		healthManager = GetComponent<HealthManager>();
@@ -43,8 +49,7 @@ public class HumanController : MonoBehaviour {
 
 			if (currentHitTargetCollision != null) {
 				if (previousHitTime + hitRate < Time.time) {
-					currentHitTargetCollision.GetComponent<HealthManager> ().currentHealth -= hitDamageForLevel;
-					previousHitTime = Time.time;
+					Hit ();
 				}
 			}
 		} else {
@@ -83,8 +88,18 @@ public class HumanController : MonoBehaviour {
 			}
 		}
 	}
+	
+	void Hit() {
+		Camera.main.GetComponent<CameraController>().Shake(Random.Range (minimumHitCameraShake, maximumHitCameraShake));
 
+		currentHitTargetCollision.GetComponent<HealthManager> ().currentHealth -= hitDamageForLevel;
+
+		previousHitTime = Time.time;
+	}
+	
 	void Die() {
+		Camera.main.GetComponent<CameraController>().Shake(Random.Range (minimumDieCameraShake, maximumDieCameraShake));
+
 		AudioManager.GetInstance ().HumanDies ();
 
 		Destroy(gameObject);
