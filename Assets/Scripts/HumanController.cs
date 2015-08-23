@@ -73,7 +73,7 @@ public class HumanController : MonoBehaviour {
 	}
 
 	void Die() {
-		AudioManager.GetInstance ().PlayDie ();
+		AudioManager.GetInstance ().HumanDies ();
 
 		Destroy(gameObject);
 	}

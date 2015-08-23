@@ -19,6 +19,8 @@ public class GameLogic : MonoBehaviour {
 	public State state;
 	public GUIStyle style;
 
+	public int minimumNumberOfHousesToProtect = 4;
+
 	public static GameLogic GetInstance () {
 		return (GameLogic)GameObject.FindObjectOfType (typeof(GameLogic));
 	}
@@ -33,6 +35,9 @@ public class GameLogic : MonoBehaviour {
 		if (state == State.Playing) {
 			if (IsLevelDestroyed ()) {
 				state = State.Destroyed;
+
+				AudioManager.GetInstance ().MonsterDies ();
+
 			} else if (IsLevelCompleted ()) {
 				state = State.Completed;
 			}
@@ -78,7 +83,7 @@ public class GameLogic : MonoBehaviour {
 	bool IsLevelDestroyed() {
 		GameObject[] gos = GameObject.FindGameObjectsWithTag("House");
 		
-		return gos.Length == 0;
+		return gos.Length < minimumNumberOfHousesToProtect;
 	}
 
 	void FreezeAllObjects() {

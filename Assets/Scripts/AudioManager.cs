@@ -5,7 +5,8 @@ public class AudioManager : MonoBehaviour {
 
 	private static AudioManager instance;
 	
-	public AudioClip die;
+	public AudioClip humanDies;
+	public AudioClip monsterDies;
 
 	void Awake() 
 	{
@@ -24,8 +25,12 @@ public class AudioManager : MonoBehaviour {
 	{
 		return instance;
 	}
-
-	public void PlayDie() {
-		GetComponent<AudioSource> ().PlayOneShot (die);
+	
+	public void HumanDies() {
+		GetComponent<AudioSource> ().PlayOneShot (humanDies);
+	}
+	
+	public void MonsterDies() {
+		GetComponent<AudioSource> ().PlayOneShot (monsterDies);
 	}
 }
