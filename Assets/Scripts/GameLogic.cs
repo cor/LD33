@@ -62,7 +62,10 @@ public class GameLogic : MonoBehaviour {
 		gameState = newGameState;
 
 		if (newGameState == GameState.Playing) {
+			Time.timeScale = 1.0f;
 			levelStartedTime = Time.time;
+		} else {
+			Time.timeScale = 0.0f;
 		}
 
 		AudioManager.GetInstance ().GameStateChanged (newGameState);
@@ -74,21 +77,32 @@ public class GameLogic : MonoBehaviour {
 		GUI.Label(new Rect(10,50, 200, 30), "Round " + (currentRound + 1), style);
 
 		if (gameState == GameState.Destroyed) {
-			FreezeAllObjects();
 
 			if (GUI.Button (new Rect (Screen.width / 2 - 75, Screen.height / 2, 150, 25), "Try again")) {
 				Restart ();
 			}
 			if (GUI.Button (new Rect (Screen.width / 2 - 75, Screen.height / 2 + 25, 150, 25), "Quit")) {
-				Application.Quit ();
+				Quit();
 			}
 		} else if (gameState == GameState.Completed) {
-			FreezeAllObjects();
 
 			if (GUI.Button (new Rect (Screen.width / 2 - 75, Screen.height / 2, 150, 25), "Next Round")) {
 				NextRound();
 			}
 		}
+	}
+	
+	private void Restart() {
+		currentLevel = INITIAL_LEVEL;
+		currentRound = INITIAL_ROUND;
+		
+		SetGameState(GameState.Playing);
+		
+		Application.LoadLevel (currentLevel);
+	}
+	
+	private void Quit() {
+		Application.Quit ();
 	}
 
 	void NextRound() {
@@ -109,12 +123,6 @@ public class GameLogic : MonoBehaviour {
 		return gos.Length < minimumNumberOfHousesToProtect;
 	}
 
-	void FreezeAllObjects() {
-		FreezeAllObjects ("Human");
-		FreezeAllObjects ("Friend");
-		FreezeAllObjects ("Monster");
-	}
-
 	public bool IsPlaying() {
 		return gameState == GameState.Playing;
 	}
@@ -127,26 +135,7 @@ public class GameLogic : MonoBehaviour {
 		return currentLevel * numberOfRounds + currentRound;
 	}
 
-	void FreezeAllObjects(string tag) {
-		foreach (GameObject gameObject in GameObject.FindGameObjectsWithTag(tag)) {
-			Rigidbody2D rigidbody2D = gameObject.GetComponent<Rigidbody2D>();
-
-			if (rigidbody2D != null) {
-				rigidbody2D.velocity = new Vector2(0,0);
-			}
-		}
-	}
-	
 	bool IsLevelCompleted() {
 		return levelStartedTime + levelDuration < Time.time;
-	}
-
-	private void Restart() {
-		currentLevel = INITIAL_LEVEL;
-		currentRound = INITIAL_ROUND;
-
-		SetGameState(GameState.Playing);
-
-		Application.LoadLevel (currentLevel);
 	}
 }
