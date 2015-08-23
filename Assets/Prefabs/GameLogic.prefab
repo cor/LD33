@@ -113,7 +113,7 @@ MonoBehaviour:
   numberOfRounds: 2
   levelDuration: 300
   levelStartedTime: 0
-  state: 0
+  gameState: 0
   style:
     m_Name: 
     m_Normal:
@@ -173,7 +173,7 @@ MonoBehaviour:
     m_FixedHeight: 0
     m_StretchWidth: 1
     m_StretchHeight: 0
-  minimumNumberOfHousesToProtect: 4
+  minimumNumberOfHousesToProtect: 0
 --- !u!114 &11495772
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -185,8 +185,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e1570d80bd544bf0ae3445988d1e0e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  humanDies: {fileID: 0}
-  monsterDies: {fileID: 0}
+  humanDies: {fileID: 8300000, guid: 81fd3d5fd662a4b1182b905f04bbe7d5, type: 3}
+  monsterDies: {fileID: 8300000, guid: a410ee5872c504e81a8631e256f1a79b, type: 3}
+  playing:
+  - {fileID: 8300000, guid: 1e34e029f4c774b18b3bb103edc8203e, type: 3}
+  - {fileID: 8300000, guid: 36c4fc2d4edfd4616b3c420f689c9cd4, type: 3}
+  - {fileID: 8300000, guid: dcb29e9fee1054f91812eb14ec661e8c, type: 3}
+  - {fileID: 8300000, guid: 5a85b4b13478743caafb126223af664c, type: 3}
+  destroyed: {fileID: 8300000, guid: 62cbd3fbfc59547eca0b9c42d557f385, type: 3}
+  completed: {fileID: 8300000, guid: eb54c28cbcd4c4eeaab46a1ad4e18dc8, type: 3}
+  backgroundAudioVolume: .100000001
+  backgroundCrossfadeSpeed: .100000001
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
@@ -194,6 +203,10 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 0}
+      propertyPath: playing.Array.size
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: style.m_Font
       value: 
@@ -212,6 +225,34 @@ Prefab:
       objectReference: {fileID: 8300000, guid: 81fd3d5fd662a4b1182b905f04bbe7d5, type: 3}
     - target: {fileID: 0}
       propertyPath: m_PlayOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: humanDies
+      value: 
+      objectReference: {fileID: 8300000, guid: 81fd3d5fd662a4b1182b905f04bbe7d5, type: 3}
+    - target: {fileID: 0}
+      propertyPath: monsterDies
+      value: 
+      objectReference: {fileID: 8300000, guid: a410ee5872c504e81a8631e256f1a79b, type: 3}
+    - target: {fileID: 0}
+      propertyPath: destroyed
+      value: 
+      objectReference: {fileID: 8300000, guid: 62cbd3fbfc59547eca0b9c42d557f385, type: 3}
+    - target: {fileID: 0}
+      propertyPath: completed
+      value: 
+      objectReference: {fileID: 8300000, guid: eb54c28cbcd4c4eeaab46a1ad4e18dc8, type: 3}
+    - target: {fileID: 0}
+      propertyPath: backgroundCrossfadeSpeed
+      value: .100000001
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: backgroundAudioVolume
+      value: .100000001
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: minimumNumberOfHousesToProtect
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

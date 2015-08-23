@@ -4,6 +4,8 @@ using System;
 
 public class GameLogic : MonoBehaviour {
 
+	private static GameLogic instance;
+
 	private const int INITIAL_LEVEL = 0;
 	private const int INITIAL_ROUND = 0;
 
@@ -14,59 +16,77 @@ public class GameLogic : MonoBehaviour {
 	public float levelDuration = 10;
 	public float levelStartedTime;
 
-	public enum State { Playing, Destroyed, Completed }
+	public enum GameState { Playing, Destroyed, Completed }
 
-	public State state;
+	public GameState gameState;
 	public GUIStyle style;
 
 	public int minimumNumberOfHousesToProtect = 4;
 
 	public static GameLogic GetInstance () {
-		return (GameLogic)GameObject.FindObjectOfType (typeof(GameLogic));
+		return instance;
+	}
+
+	void Awake() 
+	{
+		if (instance != null && instance != this) 
+		{
+			Destroy( this.gameObject );
+			return;
+		} 
+		else 
+		{
+			instance = this;
+			
+			DontDestroyOnLoad(instance.gameObject);
+		}
 	}
 
 	void Start () {
-		levelStartedTime = Time.time;
-		
-		state = State.Playing;
+		SetGameState (GameState.Playing);
 	}
 	
 	void Update () {
-		if (state == State.Playing) {
+		if (gameState == GameState.Playing) {
 			if (IsLevelDestroyed ()) {
-				state = State.Destroyed;
-
 				AudioManager.GetInstance ().MonsterDies ();
 
+				SetGameState (GameState.Destroyed);
 			} else if (IsLevelCompleted ()) {
-				state = State.Completed;
+				SetGameState (GameState.Completed);
 			}
 		}
 	}
 
+	void SetGameState(GameState newGameState) {
+		gameState = newGameState;
+
+		if (newGameState == GameState.Playing) {
+			levelStartedTime = Time.time;
+		}
+
+		AudioManager.GetInstance ().GameStateChanged (newGameState);
+	}
+	
 	void OnGUI()
 	{
 		GUI.Label(new Rect(10,10, 200, 30), "Level " + (currentLevel + 1), style);
 		GUI.Label(new Rect(10,50, 200, 30), "Round " + (currentRound + 1), style);
 
-		if (state == State.Destroyed) {
+		if (gameState == GameState.Destroyed) {
 			FreezeAllObjects();
 
 			if (GUI.Button (new Rect (Screen.width / 2 - 75, Screen.height / 2, 150, 25), "Try again")) {
 				Restart ();
-
-				Application.LoadLevel (currentLevel);
 			}
 			if (GUI.Button (new Rect (Screen.width / 2 - 75, Screen.height / 2 + 25, 150, 25), "Quit")) {
 				Application.Quit ();
 			}
-		} else if (state == State.Completed) {
+		} else if (gameState == GameState.Completed) {
 			FreezeAllObjects();
 
 			if (GUI.Button (new Rect (Screen.width / 2 - 75, Screen.height / 2, 150, 25), "Next Round")) {
 				NextRound();
-
-				Application.LoadLevel (currentRound);
 			}
 		}
 	}
@@ -78,6 +98,9 @@ public class GameLogic : MonoBehaviour {
 			currentRound = INITIAL_ROUND;
 			currentLevel++;
 		}
+
+		SetGameState(GameState.Playing);
+		Application.LoadLevel (currentRound);
 	}
 	
 	bool IsLevelDestroyed() {
@@ -93,16 +116,24 @@ public class GameLogic : MonoBehaviour {
 	}
 
 	public bool IsPlaying() {
-		return state == State.Playing;
+		return gameState == GameState.Playing;
 	}
 
 	public int GetCurrentLevel() {
 		return currentLevel;
 	}
 
+	public int GetCurrentTotalNumberOfRounds() {
+		return currentLevel * numberOfRounds + currentRound;
+	}
+
 	void FreezeAllObjects(string tag) {
-			foreach (GameObject gameObject in GameObject.FindGameObjectsWithTag(tag)) {
-			gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(0,0);
+		foreach (GameObject gameObject in GameObject.FindGameObjectsWithTag(tag)) {
+			Rigidbody2D rigidbody2D = gameObject.GetComponent<Rigidbody2D>();
+
+			if (rigidbody2D != null) {
+				rigidbody2D.velocity = new Vector2(0,0);
+			}
 		}
 	}
 	
@@ -113,5 +144,9 @@ public class GameLogic : MonoBehaviour {
 	private void Restart() {
 		currentLevel = INITIAL_LEVEL;
 		currentRound = INITIAL_ROUND;
+
+		SetGameState(GameState.Playing);
+
+		Application.LoadLevel (currentLevel);
 	}
 }
