@@ -19,7 +19,7 @@ public class GameLogic : MonoBehaviour {
 	public State state;
 	public GUIStyle style;
 
-	public static GameLogic Get () {
+	public static GameLogic GetInstance () {
 		return (GameLogic)GameObject.FindObjectOfType (typeof(GameLogic));
 	}
 

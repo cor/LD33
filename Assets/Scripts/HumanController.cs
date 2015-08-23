@@ -27,7 +27,7 @@ public class HumanController : MonoBehaviour {
 		updateHealthBar = healthBar.GetComponent<UpdateHealthBar> ();
 		updateHealthBar.targetToFollow = gameObject;
 
-		hitDamageForLevel = hitDamage * Mathf.Pow (hitDamageLevelFactor, (float)GameLogic.Get ().GetCurrentLevel()); 
+		hitDamageForLevel = hitDamage * Mathf.Pow (hitDamageLevelFactor, (float)GameLogic.GetInstance ().GetCurrentLevel()); 
 	}
 
 	void Update() {
@@ -72,8 +72,9 @@ public class HumanController : MonoBehaviour {
 		}
 	}
 
-
 	void Die() {
+		AudioManager.GetInstance ().PlayDie ();
+
 		Destroy(gameObject);
 	}
 

@@ -27,7 +27,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 163532}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -12.024251, y: .422637939, z: 0}
+  m_LocalPosition: {x: 3.47000003, y: -2.49000001, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -85,12 +85,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64c3542433b8e47a095bec4f96966d95, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  travelSpeed: .5
-  maxSpeed: 1
   hitRate: .5
   hitDamage: 2
   hitDamageLevelFactor: 2
+  hitDamageForLevel: 0
+  currentHitTargetCollision: {fileID: 0}
+  previousHitTime: 0
+  travelSpeed: .5
+  maxSpeed: 1
+  healthManager: {fileID: 0}
   healthBarToClone: {fileID: 102480, guid: d8560526974b34842aa20f053e907dd6, type: 2}
+  healthBar: {fileID: 0}
+  updateHealthBar: {fileID: 0}
 --- !u!212 &21281762
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -159,6 +165,31 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: hitDamageLevelFactor
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: die
+      value: 
+      objectReference: {fileID: 8300000, guid: 81fd3d5fd662a4b1182b905f04bbe7d5, type: 3}
+    - target: {fileID: 0}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_PlayOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: BypassReverbZones
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: OutputAudioMixerGroup
+      value: 
+      objectReference: {fileID: 24300001, guid: 1f89d0f6f01c34848a9679e3bc71b796,
+        type: 2}
+    - target: {fileID: 0}
+      propertyPath: BypassEffects
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

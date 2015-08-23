@@ -17,14 +17,14 @@ public class MonsterController : MonoBehaviour {
 	public float travelSpeedForLevel;
 
 	void Start() {
-		travelSpeedForLevel = travelSpeed * (1 + (GameLogic.Get ().GetCurrentLevel() * travelSpeedLevelFactor));
+		travelSpeedForLevel = travelSpeed * (1 + (GameLogic.GetInstance ().GetCurrentLevel() * travelSpeedLevelFactor));
 
-		hitDamageForLevel = hitDamage * Mathf.Pow (hitDamageLevelFactor, (float)GameLogic.Get ().GetCurrentLevel()); 
+		hitDamageForLevel = hitDamage * Mathf.Pow (hitDamageLevelFactor, (float)GameLogic.GetInstance ().GetCurrentLevel()); 
 	}
 
 	void FixedUpdate()
 	{
-		if (GameLogic.Get().IsPlaying ()) {
+		if (GameLogic.GetInstance().IsPlaying ()) {
 			Rigidbody2D rigidbody2D = GetComponent<Rigidbody2D> ();
 
 			rigidbody2D.velocity = new Vector2 (
