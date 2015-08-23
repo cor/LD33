@@ -309,6 +309,22 @@ Prefab:
       propertyPath: player
       value: 
       objectReference: {fileID: 981096172}
+    - target: {fileID: 2072838, guid: b98478c5c286448739dbcfa2a87d4dd2, type: 2}
+      propertyPath: m_BackGroundColor.r
+      value: .839215696
+      objectReference: {fileID: 0}
+    - target: {fileID: 2072838, guid: b98478c5c286448739dbcfa2a87d4dd2, type: 2}
+      propertyPath: m_BackGroundColor.g
+      value: .839215696
+      objectReference: {fileID: 0}
+    - target: {fileID: 2072838, guid: b98478c5c286448739dbcfa2a87d4dd2, type: 2}
+      propertyPath: m_BackGroundColor.b
+      value: .839215696
+      objectReference: {fileID: 0}
+    - target: {fileID: 2072838, guid: b98478c5c286448739dbcfa2a87d4dd2, type: 2}
+      propertyPath: m_BackGroundColor.a
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b98478c5c286448739dbcfa2a87d4dd2, type: 2}
   m_IsPrefabParent: 0
@@ -393,7 +409,12 @@ Prefab:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 11428746, guid: da949c0baf90a4df5ba5d1c2fe526bdd, type: 2}
+      propertyPath: animator
+      value: 
+      objectReference: {fileID: 1801906251}
+    m_RemovedComponents:
+    - {fileID: 21238204, guid: da949c0baf90a4df5ba5d1c2fe526bdd, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: da949c0baf90a4df5ba5d1c2fe526bdd, type: 2}
   m_IsPrefabParent: 0
 --- !u!4 &585767105 stripped
@@ -1374,6 +1395,78 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7eb5d2ad3a8a744a9afdc2feda86631a, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &1801906249
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1801906250}
+  - 212: {fileID: 1801906252}
+  - 95: {fileID: 1801906251}
+  m_Layer: 0
+  m_Name: Render
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1801906250
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1801906249}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 981096172}
+  m_RootOrder: 0
+--- !u!95 &1801906251
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1801906249}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: cb53b702201f24dc5b2cf6585f57a7ea, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+--- !u!212 &1801906252
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1801906249}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000e000000000000000, type: 0}
+  m_SubsetIndices: 
+  m_StaticBatchRoot: {fileID: 0}
+  m_UseLightProbes: 0
+  m_ReflectionProbeUsage: 0
+  m_ProbeAnchor: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 0
+  m_ImportantGI: 0
+  m_AutoUVMaxDistance: .5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
+  m_Sprite: {fileID: 21300000, guid: 90bee4b109bff40f1bd1ac8db84a12e1, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &1806337194
 GameObject:
   m_ObjectHideFlags: 0

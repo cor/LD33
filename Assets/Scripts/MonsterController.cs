@@ -16,7 +16,12 @@ public class MonsterController : MonoBehaviour {
 	public float travelSpeedLevelFactor = 0.2f;
 	public float travelSpeedForLevel;
 
+	float currentMoveSpeed = 0;
+
+	public Animator animator;
+
 	void Start() {
+
 		travelSpeedForLevel = travelSpeed * (1 + (GameLogic.GetInstance ().GetCurrentLevel() * travelSpeedLevelFactor));
 
 		hitDamageForLevel = hitDamage * Mathf.Pow (hitDamageLevelFactor, (float)GameLogic.GetInstance ().GetCurrentLevel()); 
@@ -30,11 +35,33 @@ public class MonsterController : MonoBehaviour {
 			rigidbody2D.velocity = new Vector2 (
 				Input.GetAxis ("Horizontal") * travelSpeedForLevel * Time.deltaTime, 
 				Input.GetAxis ("Vertical") * travelSpeedForLevel * Time.deltaTime);
+			currentMoveSpeed = rigidbody2D.velocity.magnitude;
 		}
 	}
 
 
 	void Update() {
+
+		// Animations
+		if (animator != null) {
+			animator.SetFloat("MoveSpeed", currentMoveSpeed);
+		}
+		if (GetComponent<Rigidbody2D>().velocity.y > 0) {
+		}
+
+		Rigidbody2D rb = GetComponent<Rigidbody2D>();
+
+//		Vector2 relativePos = (Vector2)transform.position + GetComponent<Rigidbody2D>().velocity;
+//		Quaternion rotation = Quaternion.LookRotation(relativePos);
+//		transform.rotation = rotation;
+		Vector2 v = rb.velocity;
+		if (v.magnitude > 0.1f) {
+		transform.rotation = Quaternion.AngleAxis(Mathf.Atan2(v.y, v.x) * Mathf.Rad2Deg, Vector3.forward);
+
+		}
+
+
+
 		if (currentHitTargetCollision != null) {
 			if (previousHitTime + hitRate < Time.time) {
 				currentHitTargetCollision.gameObject.GetComponent<HealthManager>().currentHealth -= hitDamageForLevel;
