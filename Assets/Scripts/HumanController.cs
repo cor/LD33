@@ -26,6 +26,10 @@ public class HumanController : MonoBehaviour {
 	public float minimumDieCameraShake = 0.25f;
 	public float maximumDieCameraShake = 0.5f;
 
+	public ParticleSystem dieParticleSystem;
+
+	private bool died = false;
+
 	void Start() {
 		healthManager = GetComponent<HealthManager>();
 
@@ -122,11 +126,17 @@ public class HumanController : MonoBehaviour {
 	}
 	
 	void Die() {
-		Camera.main.GetComponent<CameraController>().Shake(Random.Range (minimumDieCameraShake, maximumDieCameraShake));
+		if (!died) {
+			died = true;
 
-		AudioManager.GetInstance ().HumanDies ();
+			Camera.main.GetComponent<CameraController> ().Shake (Random.Range (minimumDieCameraShake, maximumDieCameraShake));
 
-		Destroy(gameObject);
+			AudioManager.GetInstance ().HumanDies ();
+
+			Instantiate (dieParticleSystem, transform.position, Quaternion.identity);
+
+			Destroy (gameObject, 0.5f);
+		}
 	}
 
 	GameObject FindClosestHouse() {
