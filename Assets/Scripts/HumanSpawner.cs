@@ -9,11 +9,11 @@ public class HumanSpawner : MonoBehaviour {
 	public float moveSpeed = 3;
 	public Transform[] pointArray;
 
-	int currentPointIndex = 0;
-	Vector2 currentTargetPoint;
+	public int currentPointIndex = 0;
+	public Vector2 currentTargetPoint;
 
-	float locationErrorMargin = 0.1f;
-	bool pathMode = false;	
+	public float locationErrorMargin = 0.1f;
+	public bool pathMode = false;	
 
 	// Use this for initialization
 	void Start () {

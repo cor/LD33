@@ -11,15 +11,12 @@ public class GameLogic : MonoBehaviour {
 	private static int currentRound = INITIAL_ROUND;
 
 	public int numberOfRounds = 2;
-
 	public float levelDuration = 10;
+	public float levelStartedTime;
 
-	private float levelStartedTime;
+	public enum State { Playing, Destroyed, Completed }
 
-	enum State { Playing, Destroyed, Completed }
-
-	private State state;
-
+	public State state;
 	public GUIStyle style;
 
 	public static GameLogic Get () {

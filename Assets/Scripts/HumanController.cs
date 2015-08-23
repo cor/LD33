@@ -3,36 +3,36 @@ using System.Collections;
 
 public class HumanController : MonoBehaviour {
 
-	public float travelSpeed = 0.5f;
-	public float maxSpeed = 1f; //Replace with your max speed
-
 	public float hitRate = 1f; // Delay between hits, in seconds
-	public int hitDamage = 10;
+	public float hitDamage = 10f;
 	public float hitDamageLevelFactor = 2.0f;
+	public float hitDamageForLevel;
 
-	private float hitDamageForLevel;
+	public GameObject currentHitTargetCollision;
+	public float previousHitTime = 0f;
 
-	HealthManager healthManager;
+	public float travelSpeed = 0.5f;
+	public float maxSpeed = 1f;
 
-	float previousHitTime = 0f;
-
-	GameObject currentHitTargetCollision;
-
+	public HealthManager healthManager;
+	
 	public GameObject healthBarToClone;
-	GameObject healthBar;
+	public GameObject healthBar;
+	public UpdateHealthBar updateHealthBar;
 
 	void Start() {
 		healthManager = GetComponent<HealthManager>();
 
 		healthBar = (GameObject)Instantiate(healthBarToClone, transform.position, Quaternion.identity);
-		healthBar.GetComponent<UpdateHealthBar>().targetToFollow = gameObject;
+		updateHealthBar = healthBar.GetComponent<UpdateHealthBar> ();
+		updateHealthBar.targetToFollow = gameObject;
 
 		hitDamageForLevel = hitDamage * Mathf.Pow (hitDamageLevelFactor, (float)GameLogic.Get ().GetCurrentLevel()); 
 	}
 
 	void Update() {
 		if (healthBar != null) {
-			healthBar.GetComponent<UpdateHealthBar>().setScale(healthManager.getPercentage());
+			updateHealthBar.setScale(healthManager.getPercentage());
 		}
 
 		if (healthManager.currentHealth <= 0) {

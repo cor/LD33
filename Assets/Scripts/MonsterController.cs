@@ -3,20 +3,18 @@ using System.Collections;
 
 public class MonsterController : MonoBehaviour {
 
-	public float travelSpeed = 10f;
-
 	public float hitRate = 1f; // Delay between hits, in seconds
-	public int hitDamage = 20;
+
+	public float hitDamage = 20f;
 	public float hitDamageLevelFactor = 0.5f;
-	
-	private float hitDamageForLevel;
+	public float hitDamageForLevel;
 
+	public GameObject currentHitTargetCollision;
+	public float previousHitTime;
+
+	public float travelSpeed = 10f;
 	public float travelSpeedLevelFactor = 0.2f;
-
-	private float travelSpeedForLevel;
-
-	private GameObject currentHitTargetCollision;
-	private float previousHitTime;
+	public float travelSpeedForLevel;
 
 	void Start() {
 		travelSpeedForLevel = travelSpeed * (1 + (GameLogic.Get ().GetCurrentLevel() * travelSpeedLevelFactor));

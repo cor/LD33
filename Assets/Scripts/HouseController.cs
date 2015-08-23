@@ -4,21 +4,22 @@ using System.Collections;
 public class HouseController : MonoBehaviour {
 
 	public GameObject healthBarToClone;
-	GameObject healthBar;
+	public GameObject healthBar;
 
-	HealthManager healthManager;
-	// Use this for initialization
+	public HealthManager healthManager;
+	public UpdateHealthBar updateHealthBar;
+
 	void Start () {
 		healthManager = GetComponent<HealthManager>();
 
 		healthBar = (GameObject)Instantiate(healthBarToClone, transform.position, Quaternion.identity);
-		healthBar.GetComponent<UpdateHealthBar>().targetToFollow = gameObject;
+		updateHealthBar = healthBar.GetComponent<UpdateHealthBar> ();
+		updateHealthBar.targetToFollow = gameObject;
 	}
 	
-	// Update is called once per frame
 	void Update () {
 		if (healthBar != null) {
-			healthBar.GetComponent<UpdateHealthBar>().setScale(healthManager.getPercentage());
+			updateHealthBar.setScale(healthManager.getPercentage());
 		}
 		
 		if (healthManager.currentHealth <= 0) {
