@@ -13,8 +13,11 @@ public class AudioManager : MonoBehaviour {
 	public AudioClip destroyed;
 	public AudioClip completed;
 
-	private AudioSource background1;
-	private AudioSource background2;
+	private AudioSource playingAudioSource;
+	private AudioSource availableAudioSource;
+
+	public float backgroundAudioVolume = 1.0f;
+	public float backgroundCrossfadeSpeed = 0.1f;
 
 	void Awake() 
 	{
@@ -30,10 +33,22 @@ public class AudioManager : MonoBehaviour {
 			DontDestroyOnLoad(instance.gameObject);
 		}
 
-		background1 = AddAudio (completed, true, false, 1.0f);
-		background2 = AddAudio (completed, true, false, 1.0f);
+		playingAudioSource = AddAudio (completed, true, false, 1.0f);
+		availableAudioSource = AddAudio (completed, true, false, 1.0f);
 	}
-	
+
+	void Update() {
+		if (playingAudioSource.volume < backgroundAudioVolume) {
+			float newPlayingVolume = playingAudioSource.volume + backgroundCrossfadeSpeed * Time.deltaTime;
+			playingAudioSource.volume = Mathf.Min(newPlayingVolume, backgroundAudioVolume);
+		}
+		
+		if (availableAudioSource.volume > 0.0f) {
+			float newPlayingVolume = availableAudioSource.volume - backgroundCrossfadeSpeed * Time.deltaTime;
+			availableAudioSource.volume = Mathf.Max(newPlayingVolume, 0.0f);
+		}
+	}
+
 	public static AudioManager GetInstance() 
 	{
 		return instance;
@@ -50,17 +65,6 @@ public class AudioManager : MonoBehaviour {
 	public void GameStateChanged(GameLogic.GameState gameState) {
 		AudioClip newClip;
 
-		AudioSource playingSource;
-		AudioSource availableSource;
-		
-		if (background1.isPlaying) {
-			availableSource = background2;
-			playingSource = background1;
-		} else {
-			availableSource = background1;
-			playingSource = background2;
-		}
-
 		if (gameState == GameLogic.GameState.Completed) {
 			newClip = completed;
 		} else if (gameState == GameLogic.GameState.Destroyed) {
@@ -74,10 +78,15 @@ public class AudioManager : MonoBehaviour {
 			return;
 		}
 
-		availableSource.clip = newClip;
-		availableSource.time = playingSource.time;
-		availableSource.Play ();
-		playingSource.Stop ();
+		availableAudioSource.clip = newClip;
+		availableAudioSource.time = playingAudioSource.time;
+		availableAudioSource.volume = 0.0f;
+		availableAudioSource.Play ();
+
+		AudioSource temp = playingAudioSource;
+
+		playingAudioSource = availableAudioSource;
+		availableAudioSource = temp;
 	}
 
 	private AudioSource AddAudio(AudioClip clip, bool loop, bool playOnAwake, float volume) { 

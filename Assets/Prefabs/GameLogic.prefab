@@ -113,7 +113,7 @@ MonoBehaviour:
   numberOfRounds: 2
   levelDuration: 30
   levelStartedTime: 0
-  state: 0
+  gameState: 0
   style:
     m_Name: 
     m_Normal:
@@ -173,7 +173,7 @@ MonoBehaviour:
     m_FixedHeight: 0
     m_StretchWidth: 1
     m_StretchHeight: 0
-  minimumNumberOfHousesToProtect: 4
+  minimumNumberOfHousesToProtect: 0
 --- !u!114 &11495772
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -194,6 +194,8 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 5a85b4b13478743caafb126223af664c, type: 3}
   destroyed: {fileID: 8300000, guid: 62cbd3fbfc59547eca0b9c42d557f385, type: 3}
   completed: {fileID: 8300000, guid: eb54c28cbcd4c4eeaab46a1ad4e18dc8, type: 3}
+  backgroundAudioVolume: .100000001
+  backgroundCrossfadeSpeed: .100000001
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
@@ -241,6 +243,18 @@ Prefab:
       propertyPath: completed
       value: 
       objectReference: {fileID: 8300000, guid: eb54c28cbcd4c4eeaab46a1ad4e18dc8, type: 3}
+    - target: {fileID: 0}
+      propertyPath: backgroundCrossfadeSpeed
+      value: .100000001
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: backgroundAudioVolume
+      value: .100000001
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: minimumNumberOfHousesToProtect
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 180308}
