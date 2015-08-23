@@ -128,8 +128,12 @@ public class GameLogic : MonoBehaviour {
 	}
 
 	void FreezeAllObjects(string tag) {
-			foreach (GameObject gameObject in GameObject.FindGameObjectsWithTag(tag)) {
-			gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(0,0);
+		foreach (GameObject gameObject in GameObject.FindGameObjectsWithTag(tag)) {
+			Rigidbody2D rigidbody2D = gameObject.GetComponent<Rigidbody2D>();
+
+			if (rigidbody2D != null) {
+				rigidbody2D.velocity = new Vector2(0,0);
+			}
 		}
 	}
 	
