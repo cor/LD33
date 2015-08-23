@@ -112,6 +112,8 @@ public class AudioManager : MonoBehaviour {
 			int indexOfClip = GameLogic.GetInstance().GetCurrentTotalNumberOfRounds() % playing.Length;
 
 			newClip = playing[indexOfClip];
+		} else if (gameState == GameLogic.GameState.Initializing) {
+			newClip = completed;
 		} else {
 			Debug.LogError("Unexpected GameState: " + gameState);
 			return;

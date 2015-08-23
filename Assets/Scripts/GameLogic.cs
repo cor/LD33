@@ -16,7 +16,7 @@ public class GameLogic : MonoBehaviour {
 	public float levelDuration = 60;
 	public float levelStartedTime;
 
-	public enum GameState { Playing, Destroyed, Completed }
+	public enum GameState { Initializing, Playing, Destroyed, Completed }
 
 	public GameState gameState;
 	public GUIStyle style;
@@ -48,11 +48,13 @@ public class GameLogic : MonoBehaviour {
 	}
 
 	void Start () {
-		SetGameState (GameState.Playing);
+		SetGameState (GameState.Initializing);
 	}
 	
 	void Update () {
-		if (gameState == GameState.Playing) {
+		if (gameState == GameState.Initializing) {
+			SetGameState (GameState.Playing);
+		} else if (gameState == GameState.Playing) {
 			if (IsLevelDestroyed ()) {
 				Camera.main.GetComponent<CameraController>().Shake(UnityEngine.Random.Range (minimumDieCameraShake, maximumDieCameraShake));
 
@@ -100,8 +102,7 @@ public class GameLogic : MonoBehaviour {
 		currentLevel = INITIAL_LEVEL;
 		currentRound = INITIAL_ROUND;
 		
-		SetGameState(GameState.Playing);
-		
+		SetGameState(GameState.Initializing);
 		Application.LoadLevel (currentLevel);
 	}
 	
@@ -117,7 +118,7 @@ public class GameLogic : MonoBehaviour {
 			currentLevel++;
 		}
 
-		SetGameState(GameState.Playing);
+		SetGameState(GameState.Initializing);
 		Application.LoadLevel (currentRound);
 	}
 	
