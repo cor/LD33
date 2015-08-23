@@ -111,7 +111,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   numberOfRounds: 2
-  levelDuration: 10
+  levelDuration: 60
   levelStartedTime: 0
   gameState: 0
   style:
@@ -196,6 +196,10 @@ MonoBehaviour:
   completed: {fileID: 8300000, guid: eb54c28cbcd4c4eeaab46a1ad4e18dc8, type: 3}
   backgroundAudioVolume: .100000001
   backgroundCrossfadeSpeed: .100000001
+  minimumPlayingPitch: 1.5
+  maximumPlayingPitch: 2
+  pausedPlayingPitch: 1
+  pitchChangeSpeed: .100000001
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
@@ -217,7 +221,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: levelDuration
-      value: 10
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: die

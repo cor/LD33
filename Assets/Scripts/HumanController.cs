@@ -31,6 +31,22 @@ public class HumanController : MonoBehaviour {
 	}
 
 	void Update() {
+
+
+		//Animations
+//		if (currentHitTargetCollision != null) {
+//
+//		} else {
+//
+//			Rigidbody2D rb = GetComponent<Rigidbody2D> ();
+//			Vector2 v = rb.velocity;
+//			if (v.magnitude > 0.1f) {
+//				transform.rotation = Quaternion.AngleAxis (Mathf.Atan2 (v.y, v.x) * Mathf.Rad2Deg + 90, Vector3.forward);
+//
+//			}
+//		}
+
+
 		if (GameLogic.GetInstance ().IsPlaying ()) {
 
 			if (healthBar != null) {
@@ -64,6 +80,14 @@ public class HumanController : MonoBehaviour {
 
 				rigidbody2D.AddForce (direction * travelSpeed);
 				rigidbody2D.velocity = Vector2.ClampMagnitude (rigidbody2D.velocity, maxSpeed);
+
+
+				// LOOK AT TARGET
+				Vector3 diff = closestHouse.transform.position - transform.position;
+				diff.Normalize();
+				
+				float rot_z = Mathf.Atan2(diff.y, diff.x) * Mathf.Rad2Deg;
+				transform.rotation = Quaternion.Euler(0f, 0f, rot_z + 90);
 			}
 		}
 	}

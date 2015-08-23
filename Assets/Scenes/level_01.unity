@@ -311,15 +311,15 @@ Prefab:
       objectReference: {fileID: 981096172}
     - target: {fileID: 2072838, guid: b98478c5c286448739dbcfa2a87d4dd2, type: 2}
       propertyPath: m_BackGroundColor.r
-      value: .839215696
+      value: .960784316
       objectReference: {fileID: 0}
     - target: {fileID: 2072838, guid: b98478c5c286448739dbcfa2a87d4dd2, type: 2}
       propertyPath: m_BackGroundColor.g
-      value: .839215696
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2072838, guid: b98478c5c286448739dbcfa2a87d4dd2, type: 2}
       propertyPath: m_BackGroundColor.b
-      value: .839215696
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2072838, guid: b98478c5c286448739dbcfa2a87d4dd2, type: 2}
       propertyPath: m_BackGroundColor.a
@@ -524,10 +524,6 @@ Prefab:
     - target: {fileID: 467296, guid: 7562ad1cbce5a4658bda1a4bf41d3dc1, type: 2}
       propertyPath: m_RootOrder
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8205518, guid: 7562ad1cbce5a4658bda1a4bf41d3dc1, type: 2}
-      propertyPath: BypassEffects
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7562ad1cbce5a4658bda1a4bf41d3dc1, type: 2}
