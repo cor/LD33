@@ -46,11 +46,15 @@ public class HumanSpawner : MonoBehaviour {
 	}
 
 	void SpawnHuman() {
-		Instantiate(human, transform.position, Quaternion.identity);
+		if (GameLogic.GetInstance ().IsPlaying ()) {
+			Instantiate (human, transform.position, Quaternion.identity);
+		}
 	}
 
 	void SpawnHuman(Vector2 position) {
-		Instantiate(human, position, Quaternion.identity);
+		if (GameLogic.GetInstance ().IsPlaying ()) {
+			Instantiate (human, position, Quaternion.identity);
+		}
 	}
 
 	Vector2 GetNextPoint() {
