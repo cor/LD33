@@ -115,6 +115,11 @@ MonoBehaviour:
   healthBarToClone: {fileID: 102480, guid: d8560526974b34842aa20f053e907dd6, type: 2}
   healthBar: {fileID: 0}
   updateHealthBar: {fileID: 0}
+  minimumHitCameraShake: .100000001
+  maximumHitCameraShake: .200000003
+  minimumDieCameraShake: .25
+  maximumDieCameraShake: .5
+  dieParticleSystem: {fileID: 19813360, guid: 15f5a0f81fe8641d5b31fb9b02961f71, type: 2}
 --- !u!212 &21281762
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -209,6 +214,11 @@ Prefab:
       propertyPath: BypassEffects
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: dieParticleSystem
+      value: 
+      objectReference: {fileID: 19813360, guid: 15f5a0f81fe8641d5b31fb9b02961f71,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 163532}

@@ -57,7 +57,7 @@ public class HumanController : MonoBehaviour {
 //		}
 
 
-		if (GameLogic.GetInstance ().IsPlaying ()) {
+		if (!died && GameLogic.GetInstance ().IsPlaying ()) {
 
 			if (healthBar != null) {
 				updateHealthBar.setScale (healthManager.getPercentage ());
@@ -79,7 +79,7 @@ public class HumanController : MonoBehaviour {
 
 
 	void FixedUpdate() {
-		if (GameLogic.GetInstance ().IsPlaying ()) {
+		if (!died && GameLogic.GetInstance ().IsPlaying ()) {
 
 			GameObject closestHouse = FindClosestHouse ();
 			if (closestHouse != null) {
@@ -102,7 +102,7 @@ public class HumanController : MonoBehaviour {
 	}
 	
 	void OnCollisionEnter2D (Collision2D col) {
-		if (GameLogic.GetInstance ().IsPlaying ()) {
+		if (!died && GameLogic.GetInstance ().IsPlaying ()) {
 			if (col.gameObject.tag == "House") {
 				currentHitTargetCollision = col.gameObject;
 			}
@@ -110,7 +110,7 @@ public class HumanController : MonoBehaviour {
 	}
 
 	void OnCollisionExit2D (Collision2D col) {
-		if (GameLogic.GetInstance ().IsPlaying ()) {
+		if (!died && GameLogic.GetInstance ().IsPlaying ()) {
 			if (col.gameObject == currentHitTargetCollision) {
 				currentHitTargetCollision = null;
 			}
@@ -135,7 +135,7 @@ public class HumanController : MonoBehaviour {
 
 			Instantiate (dieParticleSystem, transform.position, Quaternion.identity);
 
-			Destroy (gameObject, 0.5f);
+			Destroy (gameObject, 0.3f);
 		}
 	}
 

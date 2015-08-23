@@ -174,6 +174,8 @@ MonoBehaviour:
     m_StretchWidth: 1
     m_StretchHeight: 0
   minimumNumberOfHousesToProtect: 1
+  minimumDieCameraShake: 2
+  maximumDieCameraShake: 3
 --- !u!114 &11495772
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -196,10 +198,10 @@ MonoBehaviour:
   completed: {fileID: 8300000, guid: eb54c28cbcd4c4eeaab46a1ad4e18dc8, type: 3}
   backgroundAudioVolume: .100000001
   backgroundCrossfadeSpeed: .100000001
-  minimumPlayingPitch: 1.5
-  maximumPlayingPitch: 2
+  minimumPlayingPitch: 1
+  maximumPlayingPitch: 1.20000005
   pausedPlayingPitch: 1
-  pitchChangeSpeed: .100000001
+  pitchChangeSpeed: 100
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
@@ -258,6 +260,18 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: minimumNumberOfHousesToProtect
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: minimumPlayingPitch
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: maximumPlayingPitch
+      value: 1.20000005
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: pitchChangeSpeed
+      value: 100
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

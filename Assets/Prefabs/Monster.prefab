@@ -127,6 +127,9 @@ MonoBehaviour:
   travelSpeedLevelFactor: .200000003
   travelSpeedForLevel: 0
   animator: {fileID: 9517712}
+  minimumHitCameraShake: .100000001
+  maximumHitCameraShake: .200000003
+  hitParticleSystem: {fileID: 19813360, guid: e4d7a7bd167a5491aaf2497e96e8f636, type: 2}
 --- !u!212 &21262918
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -159,7 +162,12 @@ Prefab:
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 0}
-    m_Modifications: []
+    m_Modifications:
+    - target: {fileID: 0}
+      propertyPath: hitParticleSystem
+      value: 
+      objectReference: {fileID: 19813360, guid: e4d7a7bd167a5491aaf2497e96e8f636,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 141716}

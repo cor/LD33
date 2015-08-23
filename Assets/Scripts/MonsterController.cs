@@ -23,6 +23,8 @@ public class MonsterController : MonoBehaviour {
 	public float minimumHitCameraShake = 0.1f;
 	public float maximumHitCameraShake = 0.2f;
 
+	public ParticleSystem hitParticleSystem;
+
 	void Start() {
 
 		travelSpeedForLevel = travelSpeed * (1 + (GameLogic.GetInstance ().GetCurrentLevel() * travelSpeedLevelFactor));
@@ -81,7 +83,9 @@ public class MonsterController : MonoBehaviour {
 
 	void Hit() {
 		Camera.main.GetComponent<CameraController> ().Shake (Random.Range (minimumHitCameraShake, maximumHitCameraShake));
-		
+
+		Instantiate (hitParticleSystem, currentHitTargetCollision.gameObject.transform.position, Quaternion.identity);
+
 		currentHitTargetCollision.gameObject.GetComponent<HealthManager> ().currentHealth -= hitDamageForLevel;
 		previousHitTime = Time.time;
 	}
