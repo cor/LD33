@@ -111,7 +111,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   numberOfRounds: 2
-  levelDuration: 300
+  levelDuration: 10
   levelStartedTime: 0
   gameState: 0
   style:
@@ -173,7 +173,7 @@ MonoBehaviour:
     m_FixedHeight: 0
     m_StretchWidth: 1
     m_StretchHeight: 0
-  minimumNumberOfHousesToProtect: 0
+  minimumNumberOfHousesToProtect: 1
 --- !u!114 &11495772
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -217,7 +217,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: levelDuration
-      value: 300
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: die
@@ -253,7 +253,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: minimumNumberOfHousesToProtect
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

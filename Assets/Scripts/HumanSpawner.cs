@@ -32,17 +32,17 @@ public class HumanSpawner : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
+		if (GameLogic.GetInstance ().IsPlaying ()) {
+			if (pathMode) {
+				float distance = Vector2.Distance (transform.position, currentTargetPoint);
 
-		if (pathMode) {
-			float distance = Vector2.Distance(transform.position, currentTargetPoint);
-
-			if (distance > locationErrorMargin) {
-				MoveToPoint(currentTargetPoint);
-			} else {
-				currentTargetPoint = GetNextPoint();
+				if (distance > locationErrorMargin) {
+					MoveToPoint (currentTargetPoint);
+				} else {
+					currentTargetPoint = GetNextPoint ();
+				}
 			}
 		}
-
 	}
 
 	void SpawnHuman() {

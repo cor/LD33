@@ -41,45 +41,55 @@ public class MonsterController : MonoBehaviour {
 
 
 	void Update() {
-
-		// Animations
-		if (animator != null) {
-			animator.SetFloat("MoveSpeed", currentMoveSpeed);
-		}
-		if (GetComponent<Rigidbody2D>().velocity.y > 0) {
-		}
-
-		Rigidbody2D rb = GetComponent<Rigidbody2D>();
-
-//		Vector2 relativePos = (Vector2)transform.position + GetComponent<Rigidbody2D>().velocity;
-//		Quaternion rotation = Quaternion.LookRotation(relativePos);
-//		transform.rotation = rotation;
-		Vector2 v = rb.velocity;
-		if (v.magnitude > 0.1f) {
-		transform.rotation = Quaternion.AngleAxis(Mathf.Atan2(v.y, v.x) * Mathf.Rad2Deg, Vector3.forward);
-
-		}
-
-
-
-		if (currentHitTargetCollision != null) {
-			if (previousHitTime + hitRate < Time.time) {
-				currentHitTargetCollision.gameObject.GetComponent<HealthManager>().currentHealth -= hitDamageForLevel;
-				previousHitTime = Time.time;
+		if (GameLogic.GetInstance ().IsPlaying ()) {
+			// Animations
+			if (animator != null) {
+				animator.SetFloat ("MoveSpeed", currentMoveSpeed);
 			}
-		}
+			if (GetComponent<Rigidbody2D> ().velocity.y > 0) {
+			}
 
+			Rigidbody2D rb = GetComponent<Rigidbody2D> ();
+
+			//		Vector2 relativePos = (Vector2)transform.position + GetComponent<Rigidbody2D>().velocity;
+			//		Quaternion rotation = Quaternion.LookRotation(relativePos);
+			//		transform.rotation = rotation;
+			Vector2 v = rb.velocity;
+			if (v.magnitude > 0.1f) {
+				transform.rotation = Quaternion.AngleAxis (Mathf.Atan2 (v.y, v.x) * Mathf.Rad2Deg, Vector3.forward);
+
+			}
+
+
+
+			if (currentHitTargetCollision != null) {
+				if (previousHitTime + hitRate < Time.time) {
+					currentHitTargetCollision.gameObject.GetComponent<HealthManager> ().currentHealth -= hitDamageForLevel;
+					previousHitTime = Time.time;
+				}
+			}
+		} else {
+			if (animator != null) {
+				animator.SetFloat ("MoveSpeed", 0.0f);
+			}
+
+			GetComponent<Rigidbody2D> ().Sleep ();
+		}
 	}
 
 	void OnCollisionEnter2D (Collision2D col) {
-		if (col.gameObject.tag == "Human") {
-			currentHitTargetCollision = col.gameObject;
+		if (GameLogic.GetInstance ().IsPlaying ()) {
+			if (col.gameObject.tag == "Human") {
+				currentHitTargetCollision = col.gameObject;
+			}
 		}
 	}
 
 	void OnCollisionExit2D (Collision2D col) {
-		if (col.gameObject == currentHitTargetCollision) {
-			currentHitTargetCollision = null;
+		if (GameLogic.GetInstance ().IsPlaying ()) {
+			if (col.gameObject == currentHitTargetCollision) {
+				currentHitTargetCollision = null;
+			}
 		}
 	}
 }

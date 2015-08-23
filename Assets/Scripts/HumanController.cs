@@ -31,44 +31,56 @@ public class HumanController : MonoBehaviour {
 	}
 
 	void Update() {
-		if (healthBar != null) {
-			updateHealthBar.setScale(healthManager.getPercentage());
-		}
+		if (GameLogic.GetInstance ().IsPlaying ()) {
 
-		if (healthManager.currentHealth <= 0) {
-			Die ();
-		}
-
-		if (currentHitTargetCollision != null) {
-			if (previousHitTime + hitRate < Time.time) {
-				currentHitTargetCollision.GetComponent<HealthManager> ().currentHealth -= hitDamageForLevel;
-				previousHitTime = Time.time;
+			if (healthBar != null) {
+				updateHealthBar.setScale (healthManager.getPercentage ());
 			}
+
+			if (healthManager.currentHealth <= 0) {
+				Die ();
+			}
+
+			if (currentHitTargetCollision != null) {
+				if (previousHitTime + hitRate < Time.time) {
+					currentHitTargetCollision.GetComponent<HealthManager> ().currentHealth -= hitDamageForLevel;
+					previousHitTime = Time.time;
+				}
+			}
+		} else {
+			GetComponent<Rigidbody2D> ().Sleep ();
 		}
 	}
 
 
 	void FixedUpdate() {
-		GameObject closestHouse = FindClosestHouse ();
-		if (closestHouse != null) {
-			Rigidbody2D rigidbody2D = GetComponent<Rigidbody2D> ();
+		if (GameLogic.GetInstance ().IsPlaying ()) {
 
-			Vector2 direction = (closestHouse.transform.position - transform.position).normalized;
+			GameObject closestHouse = FindClosestHouse ();
+			if (closestHouse != null) {
+				Rigidbody2D rigidbody2D = GetComponent<Rigidbody2D> ();
 
-			rigidbody2D.AddForce (direction * travelSpeed);
-			rigidbody2D.velocity = Vector2.ClampMagnitude (rigidbody2D.velocity, maxSpeed);
+				Vector2 direction = (closestHouse.transform.position - transform.position).normalized;
+
+				rigidbody2D.AddForce (direction * travelSpeed);
+				rigidbody2D.velocity = Vector2.ClampMagnitude (rigidbody2D.velocity, maxSpeed);
+			}
 		}
 	}
 	
 	void OnCollisionEnter2D (Collision2D col) {
-		if (col.gameObject.tag == "House") {
-			currentHitTargetCollision = col.gameObject;
+		if (GameLogic.GetInstance ().IsPlaying ()) {
+			if (col.gameObject.tag == "House") {
+				currentHitTargetCollision = col.gameObject;
+			}
 		}
 	}
 
 	void OnCollisionExit2D (Collision2D col) {
-		if (col.gameObject == currentHitTargetCollision) {
-			currentHitTargetCollision = null;
+		if (GameLogic.GetInstance ().IsPlaying ()) {
+			if (col.gameObject == currentHitTargetCollision) {
+				currentHitTargetCollision = null;
+			}
 		}
 	}
 
