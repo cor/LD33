@@ -61,14 +61,11 @@ public class GameLogic : MonoBehaviour {
 	void SetGameState(GameState newGameState) {
 		gameState = newGameState;
 
-		if (newGameState == GameState.Playing) {
-			Time.timeScale = 1.0f;
-			levelStartedTime = Time.time;
-		} else {
-			Time.timeScale = 0.0f;
-		}
-
 		AudioManager.GetInstance ().GameStateChanged (newGameState);
+
+		if (newGameState == GameState.Playing) {
+			levelStartedTime = Time.time;
+		}
 	}
 	
 	void OnGUI()
@@ -91,7 +88,7 @@ public class GameLogic : MonoBehaviour {
 			}
 		}
 	}
-	
+
 	private void Restart() {
 		currentLevel = INITIAL_LEVEL;
 		currentRound = INITIAL_ROUND;

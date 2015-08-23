@@ -21,27 +21,27 @@ public class UpdateHealthBar : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-		if (targetToFollow != null) {
-			transform.position = new Vector2(targetToFollow.transform.position.x, targetToFollow.transform.position.y + 0.5f);
-		} else {
+		if (GameLogic.GetInstance ().IsPlaying ()) {
+			if (targetToFollow != null) {
+				transform.position = new Vector2 (targetToFollow.transform.position.x, targetToFollow.transform.position.y + 0.5f);
+			} else {
 
-			Destroy(gameObject);
+				Destroy (gameObject);
+			}
+
+			Color newColor;
+			float xScale = healthImage.transform.localScale.x;
+
+			if (xScale > 0.75f) {
+				newColor = maxColor;
+			} else if (xScale > 0.25f) {
+				newColor = midColor;
+			} else {
+				newColor = minColor;
+			}
+
+			healthImage.GetComponent<Image> ().color = newColor;
 		}
-
-		Color newColor;
-		float xScale = healthImage.transform.localScale.x;
-
-		if (xScale > 0.75f) {
-			newColor = maxColor;
-		} else if (xScale > 0.25f) {
-			newColor = midColor;
-		} else {
-			newColor = minColor;
-		}
-
-		healthImage.GetComponent<Image>().color = newColor;
-
-
 	}
 
 	public void setScale(float scale) {

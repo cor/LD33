@@ -18,14 +18,15 @@ public class HouseController : MonoBehaviour {
 	}
 	
 	void Update () {
-		if (healthBar != null) {
-			updateHealthBar.setScale(healthManager.getPercentage());
+		if (GameLogic.GetInstance ().IsPlaying ()) {
+			if (healthBar != null) {
+				updateHealthBar.setScale (healthManager.getPercentage ());
+			}
+			
+			if (healthManager.currentHealth <= 0) {
+				Destroy (gameObject);
+			}
 		}
-		
-		if (healthManager.currentHealth <= 0) {
-			Destroy(gameObject);
-		}
-	
 	}
 
 }

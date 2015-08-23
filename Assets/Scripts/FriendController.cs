@@ -12,22 +12,30 @@ public class FriendController : MonoBehaviour {
 	public GameObject target;
 
 	void FixedUpdate() {
-		if (target == null || (Time.time - targetTime) > maximumTargetTime) {
-			InitNextTarget();
-		}
+		if (GameLogic.GetInstance ().IsPlaying ()) {
+			if (target == null || (Time.time - targetTime) > maximumTargetTime) {
+				InitNextTarget ();
+			}
 
-		if (target != null) {
-			Rigidbody2D rigidbody2D = GetComponent<Rigidbody2D> ();
-			
-			Vector2 direction = (target.transform.position - transform.position).normalized;
-			
-			rigidbody2D.AddForce (direction * travelSpeed);
-			rigidbody2D.velocity = Vector2.ClampMagnitude (rigidbody2D.velocity, maxSpeed);
+			if (target != null) {
+				Rigidbody2D rigidbody2D = GetComponent<Rigidbody2D> ();
+				
+				Vector2 direction = (target.transform.position - transform.position).normalized;
+				
+				rigidbody2D.AddForce (direction * travelSpeed);
+				rigidbody2D.velocity = Vector2.ClampMagnitude (rigidbody2D.velocity, maxSpeed);
+			}
+		} else {
+			GetComponent<Rigidbody2D> ().Sleep ();
 		}
 	}
 	
 	void OnCollisionEnter2D (Collision2D col) {
-		InitNextTarget();
+		if (GameLogic.GetInstance ().IsPlaying ()) {
+			InitNextTarget ();
+		} else {
+			GetComponent<Rigidbody2D> ().Sleep ();
+		}
 	}
 
 	void InitNextTarget() {
