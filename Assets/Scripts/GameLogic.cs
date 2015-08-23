@@ -22,8 +22,13 @@ public class GameLogic : MonoBehaviour {
 	public GUIStyle style;
 
 	public int minimumNumberOfHousesToProtect = 4;
+	
+	public float minimumDieCameraShake = 2.0f;
+	public float maximumDieCameraShake = 3.0f;
 
 	public static GameLogic GetInstance () {
+		Debug.Assert (instance != null);
+
 		return instance;
 	}
 
@@ -49,6 +54,8 @@ public class GameLogic : MonoBehaviour {
 	void Update () {
 		if (gameState == GameState.Playing) {
 			if (IsLevelDestroyed ()) {
+				Camera.main.GetComponent<CameraController>().Shake(UnityEngine.Random.Range (minimumDieCameraShake, maximumDieCameraShake));
+
 				AudioManager.GetInstance ().MonsterDies ();
 
 				SetGameState (GameState.Destroyed);
