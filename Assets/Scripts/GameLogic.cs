@@ -16,7 +16,7 @@ public class GameLogic : MonoBehaviour {
 	public float levelDuration = 60;
 	public float levelStartedTime;
 
-	public enum GameState { Initializing, Playing, Destroyed, Completed }
+	public enum GameState { Menu, Initializing, Playing, Destroyed, Completed }
 
 	public GameState gameState;
 	public GUIStyle style;
@@ -25,6 +25,10 @@ public class GameLogic : MonoBehaviour {
 	
 	public float minimumDieCameraShake = 2.0f;
 	public float maximumDieCameraShake = 3.0f;
+
+	public int overlayDepth = 1;
+
+	private Texture2D pauseOverlay;
 
 	public static GameLogic GetInstance () {
 		Debug.Assert (instance != null);
@@ -48,7 +52,15 @@ public class GameLogic : MonoBehaviour {
 	}
 
 	void Start () {
-		SetGameState (GameState.Initializing);
+		pauseOverlay = new Texture2D(1, 1, TextureFormat.ARGB32, false);
+
+		// set the pixel values
+		pauseOverlay.SetPixel(0, 0, new Color(.22f, .26f, .49f, 0.5f));
+
+		// Apply all SetPixel calls
+		pauseOverlay.Apply();
+
+		SetGameState (GameState.Menu);
 	}
 	
 	void Update () {
@@ -79,23 +91,53 @@ public class GameLogic : MonoBehaviour {
 	
 	void OnGUI()
 	{
-		GUI.Label(new Rect(10,10, 200, 30), "Level " + (currentLevel + 1), style);
-		GUI.Label(new Rect(10,50, 200, 30), "Round " + (currentRound + 1), style);
-
-		if (gameState == GameState.Destroyed) {
-
-			if (GUI.Button (new Rect (Screen.width / 2 - 75, Screen.height / 2, 150, 25), "Try again")) {
-				Restart ();
-			}
-			if (GUI.Button (new Rect (Screen.width / 2 - 75, Screen.height / 2 + 25, 150, 25), "Quit")) {
-				Quit();
-			}
-		} else if (gameState == GameState.Completed) {
-
-			if (GUI.Button (new Rect (Screen.width / 2 - 75, Screen.height / 2, 150, 25), "Next Round")) {
-				NextRound();
-			}
+		if (gameState != GameState.Playing) {
+			GUI.DrawTexture(new Rect (0, 0, Screen.width, Screen.height), pauseOverlay);
 		}
+
+		if (gameState != GameState.Menu) {
+			GUI.Label (new Rect (10, 10, 200, 30), "Level " + (currentLevel + 1), style);
+			GUI.Label (new Rect (10, 50, 200, 30), "Round " + (currentRound + 1), style);
+		} 
+
+		if (gameState != GameState.Playing) {
+			GUI.Label (new Rect (Screen.width / 2 - 75, Screen.height / 2 - 50, 150, 25), "Sudden Peace", style);
+
+			if (gameState == GameState.Menu) {
+				
+				if (GUI.Button (new Rect (Screen.width / 2 - 75, Screen.height / 2, 150, 25), "Play Game")) {
+					Restart ();
+				}
+
+				if (GUI.Button (new Rect (Screen.width / 2 - 75, Screen.height / 2 + 50, 150, 25), "Quit")) {
+					Quit ();
+				}
+			} else if (gameState == GameState.Completed) {
+				
+				if (GUI.Button (new Rect (Screen.width / 2 - 75, Screen.height / 2, 150, 25), "Next Round")) {
+					NextRound ();
+				}
+
+				if (GUI.Button (new Rect (Screen.width / 2 - 75, Screen.height / 2 + 25, 150, 25), "Menu")) {
+					SetGameState(GameState.Menu);
+				}
+
+				if (GUI.Button (new Rect (Screen.width / 2 - 75, Screen.height / 2 + 50, 150, 25), "Quit")) {
+					Quit ();
+				}
+			} else if (gameState == GameState.Destroyed) {
+				
+				if (GUI.Button (new Rect (Screen.width / 2 - 75, Screen.height / 2, 150, 25), "Try again")) {
+					Restart ();
+				}
+				if (GUI.Button (new Rect (Screen.width / 2 - 75, Screen.height / 2 + 25, 150, 25), "Menu")) {
+					SetGameState(GameState.Menu);
+				}
+				if (GUI.Button (new Rect (Screen.width / 2 - 75, Screen.height / 2 + 50, 150, 25), "Quit")) {
+					Quit ();
+				}
+			} 
+		} 
 	}
 
 	private void Restart() {

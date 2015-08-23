@@ -114,6 +114,8 @@ public class AudioManager : MonoBehaviour {
 			newClip = playing[indexOfClip];
 		} else if (gameState == GameLogic.GameState.Initializing) {
 			newClip = completed;
+		} else if (gameState == GameLogic.GameState.Menu) {
+			newClip = completed;
 		} else {
 			Debug.LogError("Unexpected GameState: " + gameState);
 			return;
