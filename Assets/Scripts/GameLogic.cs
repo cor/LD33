@@ -4,6 +4,8 @@ using System;
 
 public class GameLogic : MonoBehaviour {
 
+	private static GameLogic instance;
+
 	private const int INITIAL_LEVEL = 0;
 	private const int INITIAL_ROUND = 0;
 
@@ -22,12 +24,25 @@ public class GameLogic : MonoBehaviour {
 	public int minimumNumberOfHousesToProtect = 4;
 
 	public static GameLogic GetInstance () {
-		return (GameLogic)GameObject.FindObjectOfType (typeof(GameLogic));
+		return instance;
+	}
+
+	void Awake() 
+	{
+		if (instance != null && instance != this) 
+		{
+			Destroy( this.gameObject );
+			return;
+		} 
+		else 
+		{
+			instance = this;
+			
+			DontDestroyOnLoad(instance.gameObject);
+		}
 	}
 
 	void Start () {
-		levelStartedTime = Time.time;
-		
 		SetGameState (GameState.Playing);
 	}
 	
@@ -46,6 +61,10 @@ public class GameLogic : MonoBehaviour {
 	void SetGameState(GameState newGameState) {
 		gameState = newGameState;
 
+		if (newGameState == GameState.Playing) {
+			levelStartedTime = Time.time;
+		}
+
 		AudioManager.GetInstance ().GameStateChanged (newGameState);
 	}
 	
@@ -59,8 +78,6 @@ public class GameLogic : MonoBehaviour {
 
 			if (GUI.Button (new Rect (Screen.width / 2 - 75, Screen.height / 2, 150, 25), "Try again")) {
 				Restart ();
-
-				Application.LoadLevel (currentLevel);
 			}
 			if (GUI.Button (new Rect (Screen.width / 2 - 75, Screen.height / 2 + 25, 150, 25), "Quit")) {
 				Application.Quit ();
@@ -70,8 +87,6 @@ public class GameLogic : MonoBehaviour {
 
 			if (GUI.Button (new Rect (Screen.width / 2 - 75, Screen.height / 2, 150, 25), "Next Round")) {
 				NextRound();
-
-				Application.LoadLevel (currentRound);
 			}
 		}
 	}
@@ -83,6 +98,9 @@ public class GameLogic : MonoBehaviour {
 			currentRound = INITIAL_ROUND;
 			currentLevel++;
 		}
+
+		SetGameState(GameState.Playing);
+		Application.LoadLevel (currentRound);
 	}
 	
 	bool IsLevelDestroyed() {
@@ -122,5 +140,9 @@ public class GameLogic : MonoBehaviour {
 	private void Restart() {
 		currentLevel = INITIAL_LEVEL;
 		currentRound = INITIAL_ROUND;
+
+		SetGameState(GameState.Playing);
+
+		Application.LoadLevel (currentLevel);
 	}
 }

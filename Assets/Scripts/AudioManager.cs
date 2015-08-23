@@ -26,6 +26,8 @@ public class AudioManager : MonoBehaviour {
 		else 
 		{
 			instance = this;
+
+			DontDestroyOnLoad(instance.gameObject);
 		}
 
 		background1 = AddAudio (completed, true, false, 1.0f);
@@ -73,6 +75,7 @@ public class AudioManager : MonoBehaviour {
 		}
 
 		availableSource.clip = newClip;
+		availableSource.time = playingSource.time;
 		availableSource.Play ();
 		playingSource.Stop ();
 	}
