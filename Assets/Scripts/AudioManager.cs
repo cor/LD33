@@ -13,6 +13,8 @@ public class AudioManager : MonoBehaviour {
 	public AudioClip destroyed;
 	public AudioClip completed;
 
+	private AudioSource humanDiesAudioSource;
+
 	private AudioSource playingAudioSource;
 	private AudioSource availableAudioSource;
 
@@ -39,6 +41,8 @@ public class AudioManager : MonoBehaviour {
 
 			DontDestroyOnLoad(instance.gameObject);
 		}
+
+		humanDiesAudioSource = AddAudio (humanDies, false, false, 1.0f);
 
 		playingAudioSource = AddAudio (completed, true, false, 1.0f);
 		availableAudioSource = AddAudio (completed, true, false, 1.0f);
@@ -105,7 +109,8 @@ public class AudioManager : MonoBehaviour {
 	}
 	
 	public void HumanDies() {
-		GetComponent<AudioSource> ().PlayOneShot (humanDies);
+		humanDiesAudioSource.pitch = UnityEngine.Random.Range (0.7f, 0.9f);
+		humanDiesAudioSource.PlayOneShot (humanDies);
 	}
 	
 	public void MonsterDies() {
@@ -143,14 +148,14 @@ public class AudioManager : MonoBehaviour {
 		playingAudioSource = availableAudioSource;
 		availableAudioSource = temp;
 	}
-
+	
 	private AudioSource AddAudio(AudioClip clip, bool loop, bool playOnAwake, float volume) { 
 		AudioSource result = gameObject.AddComponent<AudioSource>();
 		result.clip = clip; 
 		result.loop = loop;
 		result.playOnAwake = playOnAwake;
 		result.volume = volume; 
-
+		
 		return result; 
 	}
 }
