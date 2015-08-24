@@ -24,6 +24,8 @@ public class AudioManager : MonoBehaviour {
 	public float pausedPlayingPitch = 1.0f;
 	public float pitchChangeSpeed = 0.1f;
 
+	public bool mute = false;
+
 	void Awake() 
 	{
 		if (instance != null && instance != this) 
@@ -73,6 +75,15 @@ public class AudioManager : MonoBehaviour {
 			playingAudioSource.pitch = newPitch;
 			availableAudioSource.pitch = newPitch;
 		}
+
+		if (Input.GetKeyUp (KeyCode.M)) {
+			ToggleMute();
+		}
+	}
+
+	public void ToggleMute()
+	{
+		AudioListener.pause = !AudioListener.pause;
 	}
 
 	private float GetTargetPlayingPitch()
