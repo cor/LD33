@@ -7,7 +7,7 @@ public class UpdateHealthBar : MonoBehaviour {
 	public GameObject healthImage;
 	public GameObject targetToFollow;
 
-	public Vector3 healthBarOffset = new Vector3(0, 0.5f, -0.2f);
+	public Vector3 healthBarOffset = new Vector3(0, 0.5f, 3f);
 
 	public Color maxColor = Color.green;
 	public Color midColor = Color.yellow;
