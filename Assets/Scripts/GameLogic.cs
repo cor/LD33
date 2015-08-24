@@ -28,6 +28,10 @@ public class GameLogic : MonoBehaviour {
 
 	public int overlayDepth = 1;
 
+	public GameObject dove;
+
+	bool birdHasSpawned = false;
+
 	private Texture2D pauseOverlay;
 
 	public int roundOffset = 1;
@@ -67,9 +71,19 @@ public class GameLogic : MonoBehaviour {
 	}
 	
 	void Update () {
+
+
+
+
 		if (gameState == GameState.Initializing) {
 			SetGameState (GameState.Playing);
 		} else if (gameState == GameState.Playing) {
+
+			if (Time.time > levelStartedTime + levelDuration - 4 && !birdHasSpawned) {
+				SpawnDove();
+			}
+
+
 			if (IsLevelDestroyed ()) {
 				Camera.main.GetComponent<CameraController>().Shake(UnityEngine.Random.Range (minimumDieCameraShake, maximumDieCameraShake));
 
@@ -91,7 +105,14 @@ public class GameLogic : MonoBehaviour {
 			levelStartedTime = Time.time;
 		}
 	}
-	
+
+
+	void SpawnDove() {
+		birdHasSpawned = true;
+		Vector3 doveStartPosition = new Vector3(15, 0, -8f);
+		Instantiate(dove, doveStartPosition, Quaternion.identity);
+	}
+
 	void OnGUI()
 	{
 		if (gameState != GameState.Playing) {

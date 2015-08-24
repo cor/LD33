@@ -177,7 +177,8 @@ MonoBehaviour:
   minimumDieCameraShake: 2
   maximumDieCameraShake: 3
   overlayDepth: 1
-  roundOffset: 9
+  dove: {fileID: 148304, guid: 8b1e708fa53834a20a18d8a549548997, type: 2}
+  roundOffset: 0
 --- !u!114 &11495772
 MonoBehaviour:
   m_ObjectHideFlags: 1

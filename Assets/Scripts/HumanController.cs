@@ -147,6 +147,8 @@ public class HumanController : MonoBehaviour {
 		if (!died) {
 			died = true;
 			timeOfDeath = Time.time;
+
+			transform.position = new Vector3(transform.position.x, transform.position.y, -3f);
 			
 			Camera.main.GetComponent<CameraController> ().Shake (Random.Range (minimumDieCameraShake, maximumDieCameraShake));
 			

@@ -483,10 +483,6 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 11495772, guid: 1c0c4697755d248318b1599552928d3d, type: 2}
-      propertyPath: playing.Array.size
-      value: 6
-      objectReference: {fileID: 0}
     - target: {fileID: 456840, guid: 1c0c4697755d248318b1599552928d3d, type: 2}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -517,26 +513,13 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 456840, guid: 1c0c4697755d248318b1599552928d3d, type: 2}
       propertyPath: m_RootOrder
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 11495772, guid: 1c0c4697755d248318b1599552928d3d, type: 2}
-      propertyPath: playing.Array.data[4]
-      value: 
-      objectReference: {fileID: 8300000, guid: c0a5ee916fabb4979aa0b5599a69daea, type: 3}
-    - target: {fileID: 11495772, guid: 1c0c4697755d248318b1599552928d3d, type: 2}
-      propertyPath: playing.Array.data[5]
-      value: 
-      objectReference: {fileID: 8300000, guid: 15f5ddbcf8065406b8fbe6b175c25c7c, type: 3}
-    - target: {fileID: 11479836, guid: 1c0c4697755d248318b1599552928d3d, type: 2}
-      propertyPath: roundOffset
-      value: 0
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 11479836, guid: 1c0c4697755d248318b1599552928d3d, type: 2}
       propertyPath: levelDuration
-      value: 60
+      value: 3
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 13189538, guid: 1c0c4697755d248318b1599552928d3d, type: 2}
+    m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1c0c4697755d248318b1599552928d3d, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &1173462503
