@@ -30,6 +30,8 @@ public class GameLogic : MonoBehaviour {
 
 	private Texture2D pauseOverlay;
 
+	public int roundOffset = 1;
+
 	public static GameLogic GetInstance () {
 		Debug.Assert (instance != null);
 
@@ -52,6 +54,7 @@ public class GameLogic : MonoBehaviour {
 	}
 
 	void Start () {
+		currentRound = roundOffset;
 		pauseOverlay = new Texture2D(1, 1, TextureFormat.ARGB32, false);
 
 		// set the pixel values
@@ -142,10 +145,10 @@ public class GameLogic : MonoBehaviour {
 
 	private void Restart() {
 		currentLevel = INITIAL_LEVEL;
-		currentRound = INITIAL_ROUND;
+		currentRound = INITIAL_ROUND + roundOffset;
 		
 		SetGameState(GameState.Initializing);
-		Application.LoadLevel (currentLevel);
+		Application.LoadLevel (currentRound);
 	}
 	
 	private void Quit() {
@@ -156,7 +159,7 @@ public class GameLogic : MonoBehaviour {
 		currentRound++;
 
 		if (currentRound >= numberOfRounds) {
-			currentRound = INITIAL_ROUND;
+			currentRound = INITIAL_ROUND + roundOffset;
 			currentLevel++;
 		}
 
