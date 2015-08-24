@@ -19,7 +19,9 @@ public class GameLogic : MonoBehaviour {
 	public enum GameState { Menu, Initializing, Playing, Destroyed, Completed }
 
 	public GameState gameState;
-	public GUIStyle style;
+	public GUIStyle scoreStyle;
+	public GUIStyle titleStyle;
+	public GUIStyle buttonStyle;
 
 	public int minimumNumberOfHousesToProtect = 4;
 	
@@ -99,44 +101,52 @@ public class GameLogic : MonoBehaviour {
 		}
 
 		if (gameState != GameState.Menu) {
-			GUI.Label (new Rect (10, 10, 200, 30), "Level " + (currentLevel + 1), style);
-			GUI.Label (new Rect (10, 50, 200, 30), "Round " + (currentRound + 1), style);
+			GUI.Label (new Rect (10, 10, 200, 30), "LEVEL " + (currentLevel + 1), scoreStyle);
+			GUI.Label (new Rect (10, 50, 200, 30), "ROUND " + (currentRound + 1), scoreStyle);
 		} 
 
+		float titleOffset = -150f;
+		float playOffset = 0f;
+		float menuOffset = 150f;
+		float quitOffset = 225f;
+
+		float width = Screen.width;
+		float height = 50;
+
 		if (gameState != GameState.Playing) {
-			GUI.Label (new Rect (Screen.width / 2 - 75, Screen.height / 2 - 50, 150, 25), "Sudden Peace", style);
+			GUI.Label (new Rect (Screen.width / 2 - 75, Screen.height / 2 + titleOffset, 150, height), "SUDDEN PEACE", titleStyle);
 
 			if (gameState == GameState.Menu) {
 				
-				if (GUI.Button (new Rect (Screen.width / 2 - 75, Screen.height / 2, 150, 25), "Play Game")) {
+				if (GUI.Button (new Rect (Screen.width / 2 - width / 2, Screen.height / 2 + playOffset, width, height), "PLAY GAME", buttonStyle)) {
 					Restart ();
 				}
 
-				if (GUI.Button (new Rect (Screen.width / 2 - 75, Screen.height / 2 + 50, 150, 25), "Quit")) {
+				if (GUI.Button (new Rect (Screen.width / 2 - width / 2, Screen.height / 2 + quitOffset, width, height), "QUIT", buttonStyle)) {
 					Quit ();
 				}
 			} else if (gameState == GameState.Completed) {
 				
-				if (GUI.Button (new Rect (Screen.width / 2 - 75, Screen.height / 2, 150, 25), "Next Round")) {
+				if (GUI.Button (new Rect (Screen.width / 2 - width / 2, Screen.height / 2 + playOffset, width, height), "NEXT ROUND", buttonStyle)) {
 					NextRound ();
 				}
 
-				if (GUI.Button (new Rect (Screen.width / 2 - 75, Screen.height / 2 + 25, 150, 25), "Menu")) {
+				if (GUI.Button (new Rect (Screen.width / 2 - width / 2, Screen.height / 2 + menuOffset, width, height), "MENU", buttonStyle)) {
 					SetGameState(GameState.Menu);
 				}
 
-				if (GUI.Button (new Rect (Screen.width / 2 - 75, Screen.height / 2 + 50, 150, 25), "Quit")) {
+				if (GUI.Button (new Rect (Screen.width / 2 - width / 2, Screen.height / 2 + quitOffset, width, height), "QUIT", buttonStyle)) {
 					Quit ();
 				}
 			} else if (gameState == GameState.Destroyed) {
 				
-				if (GUI.Button (new Rect (Screen.width / 2 - 75, Screen.height / 2, 150, 25), "Try again")) {
+				if (GUI.Button (new Rect (Screen.width / 2 - width / 2, Screen.height / 2 + playOffset, width, height), "TRY AGAIN", buttonStyle)) {
 					Restart ();
 				}
-				if (GUI.Button (new Rect (Screen.width / 2 - 75, Screen.height / 2 + 25, 150, 25), "Menu")) {
+				if (GUI.Button (new Rect (Screen.width / 2 - width / 2, Screen.height / 2 + menuOffset, width, height), "MENU", buttonStyle)) {
 					SetGameState(GameState.Menu);
 				}
-				if (GUI.Button (new Rect (Screen.width / 2 - 75, Screen.height / 2 + 50, 150, 25), "Quit")) {
+				if (GUI.Button (new Rect (Screen.width / 2 - width / 2, Screen.height / 2 + quitOffset, width, height), "QUIT", buttonStyle)) {
 					Quit ();
 				}
 			} 
