@@ -11,6 +11,7 @@ GameObject:
   - 114: {fileID: 11479836}
   - 114: {fileID: 11495772}
   - 82: {fileID: 8269890}
+  - 131: {fileID: 13189538}
   m_Layer: 0
   m_Name: GameLogic
   m_TagString: Untagged
@@ -25,7 +26,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 180308}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -6.12785673, y: -1.28994226, z: .138671875}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -176,8 +177,8 @@ MonoBehaviour:
   minimumNumberOfHousesToProtect: 1
   minimumDieCameraShake: 2
   maximumDieCameraShake: 3
+  textureOverlay: {fileID: 0}
   overlayDepth: 1
-  uiLogic: {fileID: 0}
 --- !u!114 &11495772
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -196,8 +197,6 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 36c4fc2d4edfd4616b3c420f689c9cd4, type: 3}
   - {fileID: 8300000, guid: dcb29e9fee1054f91812eb14ec661e8c, type: 3}
   - {fileID: 8300000, guid: 5a85b4b13478743caafb126223af664c, type: 3}
-  - {fileID: 8300000, guid: c0a5ee916fabb4979aa0b5599a69daea, type: 3}
-  - {fileID: 8300000, guid: 15f5ddbcf8065406b8fbe6b175c25c7c, type: 3}
   destroyed: {fileID: 8300000, guid: 62cbd3fbfc59547eca0b9c42d557f385, type: 3}
   completed: {fileID: 8300000, guid: eb54c28cbcd4c4eeaab46a1ad4e18dc8, type: 3}
   backgroundAudioVolume: .100000001
@@ -206,6 +205,25 @@ MonoBehaviour:
   maximumPlayingPitch: 1.20000005
   pausedPlayingPitch: 1
   pitchChangeSpeed: 100
+--- !u!131 &13189538
+GUITexture:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 180308}
+  m_Enabled: 1
+  m_Texture: {fileID: 10906, guid: 0000000000000000f000000000000000, type: 0}
+  m_Color: {r: .13333334, g: .600000024, b: 0, a: .5}
+  m_PixelInset:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 0
+    height: 0
+  m_LeftBorder: -720
+  m_RightBorder: 189
+  m_TopBorder: 588
+  m_BottomBorder: -315
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

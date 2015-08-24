@@ -1,7 +1,5 @@
 ﻿using UnityEngine;
 using System.Collections;
-using UnityEngine.UI;
-
 using System;
 
 public class GameLogic : MonoBehaviour {
@@ -29,8 +27,6 @@ public class GameLogic : MonoBehaviour {
 	public float maximumDieCameraShake = 3.0f;
 
 	public int overlayDepth = 1;
-
-	public UILogic uiLogic;
 
 	private Texture2D pauseOverlay;
 
@@ -68,10 +64,6 @@ public class GameLogic : MonoBehaviour {
 	}
 	
 	void Update () {
-
-		uiLogic.currentLevel = currentLevel;
-		uiLogic.currentRound = currentRound;
-
 		if (gameState == GameState.Initializing) {
 			SetGameState (GameState.Playing);
 		} else if (gameState == GameState.Playing) {
@@ -96,8 +88,7 @@ public class GameLogic : MonoBehaviour {
 			levelStartedTime = Time.time;
 		}
 	}
-
-
+	
 	void OnGUI()
 	{
 		if (gameState != GameState.Playing) {
@@ -105,11 +96,8 @@ public class GameLogic : MonoBehaviour {
 		}
 
 		if (gameState != GameState.Menu) {
-//			GUI.Label (new Rect (10, 10, 200, 30), "Level " + (currentLevel + 1), style);
-//			GUI.Label (new Rect (10, 50, 200, 30), "Round " + (currentRound + 1), style);
-
-			// MOVED TO UILogic
-
+			GUI.Label (new Rect (10, 10, 200, 30), "Level " + (currentLevel + 1), style);
+			GUI.Label (new Rect (10, 50, 200, 30), "Round " + (currentRound + 1), style);
 		} 
 
 		if (gameState != GameState.Playing) {
