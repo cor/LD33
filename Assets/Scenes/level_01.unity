@@ -527,6 +527,14 @@ Prefab:
       propertyPath: playing.Array.data[5]
       value: 
       objectReference: {fileID: 8300000, guid: 15f5ddbcf8065406b8fbe6b175c25c7c, type: 3}
+    - target: {fileID: 11479836, guid: 1c0c4697755d248318b1599552928d3d, type: 2}
+      propertyPath: roundOffset
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11479836, guid: 1c0c4697755d248318b1599552928d3d, type: 2}
+      propertyPath: levelDuration
+      value: 60
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 13189538, guid: 1c0c4697755d248318b1599552928d3d, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 1c0c4697755d248318b1599552928d3d, type: 2}
@@ -584,7 +592,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1329733761}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -.100000001}
+  m_LocalPosition: {x: 0, y: 0, z: -3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1649842043}

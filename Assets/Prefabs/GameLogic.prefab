@@ -110,7 +110,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f16b226d99ce42898e275e9139dccdf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  numberOfRounds: 3
+  numberOfRounds: 10
   levelDuration: 60
   levelStartedTime: 0
   gameState: 0
@@ -177,7 +177,7 @@ MonoBehaviour:
   minimumDieCameraShake: 2
   maximumDieCameraShake: 3
   overlayDepth: 1
-  roundOffset: 3
+  roundOffset: 9
 --- !u!114 &11495772
 MonoBehaviour:
   m_ObjectHideFlags: 1
