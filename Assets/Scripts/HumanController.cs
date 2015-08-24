@@ -61,28 +61,32 @@ public class HumanController : MonoBehaviour {
 //		}
 
 
-		if (!died && GameLogic.GetInstance ().IsPlaying ()) {
+		if (GameLogic.GetInstance().IsPlaying()) {
+		
+			if (!died) {
 
-			if (healthBar != null) {
-				updateHealthBar.setScale (healthManager.getPercentage ());
-			}
-
-			if (healthManager.currentHealth <= 0) {
-				Die ();
-			}
-
-			if (currentHitTargetCollision != null) {
-				if (previousHitTime + hitRate < Time.time) {
-					Hit ();
+				if (healthBar != null) {
+					updateHealthBar.setScale (healthManager.getPercentage ());
 				}
-			}
-		} else {
-			// dead
-			transform.position = new Vector3(transform.position.x + (directionBeforeDeath.x * 0.1f * ((Time.time - timeOfDeath) * 5)), 
-			                                 transform.position.y + (directionBeforeDeath.y * 0.1f * ((Time.time - timeOfDeath) * 5)),
-			                                 transform.position.z - 0.05f);
 
-			transform.localScale *= 1.03f;
+				if (healthManager.currentHealth <= 0) {
+					Die ();
+				}
+
+				if (currentHitTargetCollision != null) {
+					if (previousHitTime + hitRate < Time.time) {
+						Hit ();
+					}
+				}
+
+			} else {
+				// dead
+				transform.position = new Vector3(transform.position.x + (directionBeforeDeath.x * 0.1f * ((Time.time - timeOfDeath) * 5)), 
+				                                 transform.position.y + (directionBeforeDeath.y * 0.1f * ((Time.time - timeOfDeath) * 5)),
+				                                 transform.position.z - 0.05f);
+
+				transform.localScale *= 1.03f;
+			}
 		}
 	}
 
@@ -143,7 +147,7 @@ public class HumanController : MonoBehaviour {
 
 			AudioManager.GetInstance ().HumanDies ();
 
-			Instantiate (dieParticleSystem, transform.position, Quaternion.identity);
+
 			directionBeforeDeath = GetComponent<Rigidbody2D>().velocity;
 
 
