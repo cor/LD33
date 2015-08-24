@@ -20,8 +20,8 @@ public class MonsterController : MonoBehaviour {
 
 	public Animator animator;
 	
-	public float minimumHitCameraShake = 0.1f;
-	public float maximumHitCameraShake = 0.2f;
+	public float minimumHitCameraShake = 0.05f;
+	public float maximumHitCameraShake = 0.1f;
 
 	public ParticleSystem hitParticleSystem;
 
