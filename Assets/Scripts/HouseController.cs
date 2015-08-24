@@ -15,6 +15,7 @@ public class HouseController : MonoBehaviour {
 		healthBar = (GameObject)Instantiate(healthBarToClone, transform.position, Quaternion.identity);
 		updateHealthBar = healthBar.GetComponent<UpdateHealthBar> ();
 		updateHealthBar.targetToFollow = gameObject;
+		updateHealthBar.healthBarOffset = new Vector3(0, 1f, -0.2f);
 	}
 	
 	void Update () {
