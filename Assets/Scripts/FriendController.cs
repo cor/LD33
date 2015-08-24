@@ -15,6 +15,7 @@ public class FriendController : MonoBehaviour {
 
 	public Animator animator;
 
+	static int renderLayer;
 
 	void Update() {
 	

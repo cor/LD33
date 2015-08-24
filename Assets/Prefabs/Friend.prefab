@@ -10,7 +10,7 @@ GameObject:
   - 4: {fileID: 480442}
   - 212: {fileID: 21215354}
   - 95: {fileID: 9594430}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Render
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -45,7 +45,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 475092}
   - 212: {fileID: 21225400}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Shadow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
