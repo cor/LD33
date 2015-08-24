@@ -28,7 +28,11 @@ public class HumanController : MonoBehaviour {
 
 	public ParticleSystem dieParticleSystem;
 
+
 	private bool died = false;
+
+	Vector2 directionBeforeDeath;
+	float timeOfDeath;
 
 	void Start() {
 		healthManager = GetComponent<HealthManager>();
@@ -73,7 +77,12 @@ public class HumanController : MonoBehaviour {
 				}
 			}
 		} else {
-			GetComponent<Rigidbody2D> ().Sleep ();
+			// dead
+			transform.position = new Vector3(transform.position.x + (directionBeforeDeath.x * 0.1f * ((Time.time - timeOfDeath) * 5)), 
+			                                 transform.position.y + (directionBeforeDeath.y * 0.1f * ((Time.time - timeOfDeath) * 5)),
+			                                 transform.position.z - 0.05f);
+
+			transform.localScale *= 1.03f;
 		}
 	}
 
@@ -128,14 +137,20 @@ public class HumanController : MonoBehaviour {
 	void Die() {
 		if (!died) {
 			died = true;
+			timeOfDeath = Time.time;
 
 			Camera.main.GetComponent<CameraController> ().Shake (Random.Range (minimumDieCameraShake, maximumDieCameraShake));
 
 			AudioManager.GetInstance ().HumanDies ();
 
 			Instantiate (dieParticleSystem, transform.position, Quaternion.identity);
+			directionBeforeDeath = GetComponent<Rigidbody2D>().velocity;
 
-			Destroy (gameObject, 0.3f);
+
+			if (GetComponent<Rigidbody2D>() != null) { Destroy(GetComponent<Rigidbody2D>()); }
+			if (GetComponent<CircleCollider2D>() != null) { Destroy(GetComponent<CircleCollider2D>()); }
+
+			Destroy (gameObject, 1f);
 		}
 	}
 
