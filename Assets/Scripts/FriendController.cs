@@ -11,6 +11,34 @@ public class FriendController : MonoBehaviour {
 	public float targetTime;
 	public GameObject target;
 
+	float currentMoveSpeed = 0;
+
+	public Animator animator;
+
+
+	void Update() {
+	
+			// Animations
+			if (animator != null) {
+				animator.SetFloat ("MoveSpeed", currentMoveSpeed);
+			}
+			if (GetComponent<Rigidbody2D> ().velocity.y > 0) {
+			}
+
+			Rigidbody2D rb = GetComponent<Rigidbody2D> ();
+
+			//		Vector2 relativePos = (Vector2)transform.position + GetComponent<Rigidbody2D>().velocity;
+			//		Quaternion rotation = Quaternion.LookRotation(relativePos);
+			//		transform.rotation = rotation;
+			Vector2 v = rb.velocity;
+			if (v.magnitude > 0.1f) {
+				transform.rotation = Quaternion.AngleAxis (Mathf.Atan2 (v.y, v.x) * Mathf.Rad2Deg, Vector3.forward);
+
+			}
+	}
+
+
+
 	void FixedUpdate() {
 		if (GameLogic.GetInstance ().IsPlaying ()) {
 			if (target == null || (Time.time - targetTime) > maximumTargetTime) {
@@ -24,6 +52,8 @@ public class FriendController : MonoBehaviour {
 				
 				rigidbody2D.AddForce (direction * travelSpeed);
 				rigidbody2D.velocity = Vector2.ClampMagnitude (rigidbody2D.velocity, maxSpeed);
+
+				currentMoveSpeed = rigidbody2D.velocity.magnitude;
 			}
 		} else {
 			GetComponent<Rigidbody2D> ().Sleep ();
