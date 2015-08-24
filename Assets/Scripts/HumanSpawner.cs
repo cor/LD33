@@ -22,6 +22,7 @@ public class HumanSpawner : MonoBehaviour {
 		if (pointArray.Length >= 2) {
 			pathMode = true;
 			currentTargetPoint = GetNextPoint();
+			transform.position = new Vector3(transform.position.x, transform.position.y, pointArray[0].position.z);
 		} else if (pointArray.Length == 1) {
 			pathMode = false;
 			transform.position = pointArray[0].position;
