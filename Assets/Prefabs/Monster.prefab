@@ -54,7 +54,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 141716}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -5}
+  m_LocalPosition: {x: 0, y: 0, z: .349999994}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 416168}
@@ -126,7 +126,7 @@ MonoBehaviour:
   travelSpeed: 200
   travelSpeedLevelFactor: .200000003
   travelSpeedForLevel: 0
-  animator: {fileID: 0}
+  animator: {fileID: 9584858}
   minimumHitCameraShake: .100000001
   maximumHitCameraShake: .200000003
   hitParticleSystem: {fileID: 19813360, guid: e4d7a7bd167a5491aaf2497e96e8f636, type: 2}

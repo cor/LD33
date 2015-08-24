@@ -49,6 +49,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   healthImage: {fileID: 176560}
   targetToFollow: {fileID: 0}
+  healthBarOffset: {x: 0, y: .5, z: -.200000003}
   maxColor: {r: 0, g: 1, b: 0, a: 1}
   midColor: {r: 1, g: .921568632, b: .0156862754, a: 1}
   minColor: {r: 1, g: 0, b: 0, a: 1}
@@ -86,7 +87,7 @@ MonoBehaviour:
   m_Script: {fileID: -765806418, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 2100000, guid: aa1719872db7847f1a781240006154bc, type: 2}
+  m_Material: {fileID: 0}
   m_Color: {r: .147058845, g: 1, b: .188235387, a: 1}
   m_Sprite: {fileID: 0}
   m_Type: 0
@@ -159,7 +160,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 102480}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -2}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: .0500000007, z: 1}
   m_Children:
   - {fileID: 22407542}
@@ -192,7 +193,7 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: m_Material
       value: 
-      objectReference: {fileID: 2100000, guid: aa1719872db7847f1a781240006154bc, type: 2}
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 102480}

@@ -7,6 +7,8 @@ public class UpdateHealthBar : MonoBehaviour {
 	public GameObject healthImage;
 	public GameObject targetToFollow;
 
+	public Vector3 healthBarOffset = new Vector3(0, 0.5f, -0.2f);
+
 	public Color maxColor = Color.green;
 	public Color midColor = Color.yellow;
 	public Color minColor = Color.red;
@@ -23,7 +25,10 @@ public class UpdateHealthBar : MonoBehaviour {
 	void Update () {
 		if (GameLogic.GetInstance ().IsPlaying ()) {
 			if (targetToFollow != null) {
-				transform.position = new Vector2 (targetToFollow.transform.position.x, targetToFollow.transform.position.y + 0.5f);
+				float newX = targetToFollow.transform.position.x + healthBarOffset.x;
+				float newY = targetToFollow.transform.position.y + healthBarOffset.y;
+				float newZ = targetToFollow.transform.position.z + healthBarOffset.z;
+				transform.position = new Vector3 (newX, newY, newZ);
 			} else {
 
 				Destroy (gameObject);
