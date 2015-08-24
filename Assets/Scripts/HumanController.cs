@@ -131,9 +131,8 @@ public class HumanController : MonoBehaviour {
 	}
 	
 	void Hit() {
-		Camera.main.GetComponent<CameraController>().Shake(Random.Range (minimumHitCameraShake, maximumHitCameraShake));
-
 		currentHitTargetCollision.GetComponent<HealthManager> ().currentHealth -= hitDamageForLevel;
+		currentHitTargetCollision.GetComponent<HouseController> ().Shake (1.0f);
 
 		previousHitTime = Time.time;
 	}
