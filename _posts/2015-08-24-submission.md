@@ -22,7 +22,7 @@ Direct downloads:
 
 Please rate our submission on [Ludum Dare](http://ludumdare.com/compo/ludum-dare-33/?action=preview&uid=50247).
 
-![Clip](http://gfycat.com/ElderlyUnlawfulChevrotain)
+![Short Movie Clip]({{ site.url }}{{ site.baseurl }}/assets/Short Movie Clip.gif)
 
 ![Screenshot 1]({{ site.url }}{{ site.baseurl }}/assets/Screenshot 1.png)
 
