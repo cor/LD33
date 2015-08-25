@@ -13,7 +13,6 @@ Until that happens, you'll just have to kill the humans.
 Controls: WASD / Arrow keys.
 
 Everything is made from scratch, the art, music, sound effects, particles and all scripts.
-See http://cor.github.io/LD33/ for all previous builds and source code.
 
 Direct downloads:
 
@@ -21,7 +20,7 @@ Direct downloads:
   - [Linux][linux-download]
   - [Windows][windows-download]
 
-Please rate our submission on [Ludum Dare](http://ludumdare.com/compo/ludum-dare-33/?action=preview&uid=50396).
+Please rate our submission on [Ludum Dare](http://ludumdare.com/compo/ludum-dare-33/?action=preview&uid=50247).
 
 ![Clip](http://gfycat.com/ElderlyUnlawfulChevrotain)
 
